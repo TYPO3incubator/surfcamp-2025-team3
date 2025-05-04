@@ -15,6 +15,21 @@
             <trans-unit id="backend_layout.column.right">
                 <source>Right</source>
             </trans-unit>
+            <trans-unit id="tx_surfcampbase_api_endpoint">
+                <source>API Endpoint</source>
+            </trans-unit>
+            <trans-unit id="tx_surfcampbase_api_endpoint.base">
+                <source>Corresponding API Base</source>
+            </trans-unit>
+            <trans-unit id="tx_surfcampbase_api_endpoint.name">
+                <source>Name</source>
+            </trans-unit>
+            <trans-unit id="tx_surfcampbase_api_endpoint.path">
+                <source>Path</source>
+            </trans-unit>
+            <trans-unit id="tx_surfcampbase_api_endpoint.path.description">
+                <source>Path to be appended to the base url, including parameters. E.g. matches?id=123</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>
