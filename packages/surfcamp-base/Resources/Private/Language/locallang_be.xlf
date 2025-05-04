@@ -30,6 +30,38 @@
             <trans-unit id="tx_surfcampbase_api_endpoint.path.description">
                 <source>Path to be appended to the base url, including parameters. E.g. matches?id=123</source>
             </trans-unit>
+
+            <!-- api_fieldmapping -->
+            <trans-unit id="fieldmapping.title" resname="fieldmapping.title">
+                <source>API field mapping</source>
+            </trans-unit>
+            <trans-unit id="fieldmapping.source.title" resname="fieldmapping.source.title">
+                <source>Source</source>
+            </trans-unit>
+            <trans-unit id="fieldmapping.target.title" resname="fieldmapping.target.title">
+                <source>Target</source>
+            </trans-unit>
+            <trans-unit id="fieldmapping.target_datatype.title" resname="fieldmapping.target_datatype.title">
+                <source>Target datatype</source>
+            </trans-unit>
+            <trans-unit id="fieldmapping.target_datatype.items.string" resname="fieldmapping.target_datatype.items.string">
+                <source>String</source>
+            </trans-unit>
+            <trans-unit id="fieldmapping.target_datatype.items.int" resname="fieldmapping.target_datatype.items.int">
+                <source>Integer</source>
+            </trans-unit>
+            <trans-unit id="fieldmapping.target_datatype.items.float" resname="fieldmapping.target_datatype.items.float">
+                <source>Float</source>
+            </trans-unit>
+            <trans-unit id="fieldmapping.target_datatype.items.bool" resname="fieldmapping.target_datatype.items.bool">
+                <source>Bool</source>
+            </trans-unit>
+            <trans-unit id="fieldmapping.target_datatype.items.currency" resname="fieldmapping.target_datatype.items.currency">
+                <source>Currency</source>
+            </trans-unit>
+            <trans-unit id="fieldmapping.target_datatype.items.datetime" resname="fieldmapping.target_datatype.items.datetime">
+                <source>Datetime</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>
