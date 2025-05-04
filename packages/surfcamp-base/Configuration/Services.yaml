@@ -7,6 +7,6 @@ services:
   TYPO3Incubator\SurfcampBase\:
     resource: '../Classes/*'
 
-  \TYPO3Incubator\SurfcampBase\DataProcessors\ApiAggregationDataProcessor:
+  TYPO3Incubator\SurfcampBase\DataProcessors\ApiAggregationDataProcessor:
     tags:
       - name: 'data.processor'
