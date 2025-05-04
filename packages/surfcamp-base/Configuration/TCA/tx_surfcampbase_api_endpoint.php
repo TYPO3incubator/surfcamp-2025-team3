@@ -58,7 +58,7 @@ return [
         'mappings' => [
             'config' => [
                 'type' => 'inline',
-                'foreign_table' => 'tx_surfcampbase_api_endpoint_mapping',
+                'foreign_table' => 'tx_surfcampbase_api_fieldmapping',
                 'foreign_field' => 'api_endpoint',
                 'appearance' => [
                     'useSortable' => true,
