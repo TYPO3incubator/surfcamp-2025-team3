@@ -1,0 +1,6 @@
+tt_content {
+    api_data_link =< lib.contentElement
+    api_data_link {
+        templateName = ApiDataLink
+    }
+}

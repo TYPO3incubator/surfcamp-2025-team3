@@ -15,8 +15,11 @@
             <trans-unit id="backend_layout.column.right">
                 <source>Right</source>
             </trans-unit>
-            <trans-unit id="content_element.api_data_link">
+            <trans-unit id="content_element.api_data_link.label">
                 <source>API Data Link</source>
+            </trans-unit>
+            <trans-unit id="content_element.api_data_link.description">
+                <source>This is a content element for linking different APIs.</source>
             </trans-unit>
         </body>
     </file>

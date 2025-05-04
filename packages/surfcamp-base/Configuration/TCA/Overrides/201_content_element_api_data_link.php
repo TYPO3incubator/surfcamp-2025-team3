@@ -12,8 +12,9 @@ ExtensionManagementUtility::addTcaSelectItem(
     'tt_content',
     'CType',
     [
-        'label' => 'LLL:EXT:surfcamp-base/Resources/Private/Language/locallang_be.xlf:content_element.api_data_link',
+        'label' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:content_element.api_data_link.label',
         'value' => $key,
+        'description' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:content_element.api_data_link.description',
         'group' => 'default',
     ],
     'textmedia',
@@ -23,7 +24,6 @@ ExtensionManagementUtility::addTcaSelectItem(
 // Configure the default backend fields for the content element
 $GLOBALS['TCA']['tt_content']['types'][$key] = [
     'showitem' => '
-            --palette--;;headers,
-            bodytext,
+           template,
         ',
 ];
