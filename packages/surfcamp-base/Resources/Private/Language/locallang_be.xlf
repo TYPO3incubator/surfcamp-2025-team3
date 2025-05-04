@@ -30,6 +30,26 @@
             <trans-unit id="tx_surfcampbase_api_endpoint.path.description">
                 <source>Path to be appended to the base url, including parameters. E.g. matches?id=123</source>
             </trans-unit>
+
+            <!-- api_base record -->
+            <trans-unit id="tx_surfcampbase_api_base">
+                <source>API Base confiuration</source>
+            </trans-unit>
+            <trans-unit id="tx_surfcampbase_api_base.name">
+                <source>API Name</source>
+            </trans-unit>
+            <trans-unit id="tx_surfcampbase_api_base.base_url">
+                <source>API base url</source>
+            </trans-unit>
+            <trans-unit id="tx_surfcampbase_api_base.additional_headers">
+                <source>Additional headers</source>
+            </trans-unit>
+            <trans-unit id="tx_surfcampbase_api_base.additional_headers.description">
+                <source>Provider additional headers for the API Request, like the authorization header</source>
+            </trans-unit>
+            <trans-unit id="tx_surfcampbase_api_base.endpoints">
+                <source>API endpoints</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>
