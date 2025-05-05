@@ -42,6 +42,37 @@ class ApiEndpointRepository
         }
     }
 
+    public function findByBaseUid(int $baseUid): array
+    {
+        $queryBuilder = $this->getQueryBuilder();
+        try {
+            $records = $queryBuilder->select('*')
+                ->from('tx_surfcampbase_api_endpoint')
+                ->where(
+                    $queryBuilder->expr()->eq(
+                        'base',
+                        $queryBuilder->createNamedParameter($baseUid, ParameterType::INTEGER)
+                    )
+                )
+                ->executeQuery()
+                ->fetchAllAssociative();
+
+            $endpoints = [];
+            foreach ($records as $record) {
+                $endpoints[] = [
+                    $record['name'],
+                    $record['path'],
+                    json_decode($record['mappings'] ?? '[]', true)
+                ];
+            }
+
+            return $endpoints;
+        } catch (Exception $e) {
+            $this->logger->error($e->getMessage());
+            return [];
+        }
+    }
+
     private function getQueryBuilder(): QueryBuilder
     {
         return GeneralUtility::makeInstance(ConnectionPool::class)
