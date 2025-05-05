@@ -24,6 +24,9 @@
             <trans-unit id="field.template">
                 <source>Template</source>
             </trans-unit>
+            <trans-unit id="field.api_endpoint">
+                <source>Api Endpoint</source>
+            </trans-unit>
             <trans-unit id="tx_surfcampbase_api_endpoint">
                 <source>API Endpoint</source>
             </trans-unit>

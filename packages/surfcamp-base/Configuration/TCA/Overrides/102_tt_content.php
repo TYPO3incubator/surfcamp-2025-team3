@@ -16,7 +16,7 @@ ExtensionManagementUtility::addTCAcolumns(
             ],
         ],
         'api_endpoint' => [
-            'exclude' => true,
+            'label' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:field.api_endpoint',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
