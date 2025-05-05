@@ -17,11 +17,8 @@ return [
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ],
-        'searchFields' => '',
+        'searchFields' => 'name',
         'iconfile' => 'EXT:surfcamp_base/Resources/Public/Icons/api-endpoint.svg',
-        'security' => [
-            'ignorePageTypeRestriction' => true,
-        ],
         'hideTable' => true,
     ],
     'columns' => [

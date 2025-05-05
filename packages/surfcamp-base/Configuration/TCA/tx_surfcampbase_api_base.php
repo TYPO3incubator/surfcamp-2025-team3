@@ -7,11 +7,20 @@ return [
         'title' => $ll,
         'label' => 'name',
         'iconfile' => 'EXT:surfcamp_base/Resources/Public/Icons/configuration.svg',
+        'tstamp' => 'tstamp',
+        'sortby' => 'sorting',
+        'crdate' => 'crdate',
+        'versioningWS' => true,
+        'languageField' => 'sys_language_uid',
+        'transOrigPointerField' => 'l10n_parent',
+        'transOrigDiffSourceField' => 'l10n_diffsource',
+        'delete' => 'deleted',
         'enablecolumns' => [
             'disabled' => 'hidden',
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ],
+        'searchFields' => 'name',
     ],
     'types' => [
         0 => [
