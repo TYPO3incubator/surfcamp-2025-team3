@@ -1,22 +1,9 @@
 tt_content {
-#    api_data_link =< lib.contentElement
-#    api_data_link >
     api_data_link = FLUIDTEMPLATE
     api_data_link {
         template = TEXT
         template.field = uid
-        template.preUserFunc = TYPO3Incubator\SurfcampBase\UserFunc\FileResolver->resolveContentsForFileReferenceLocalId
+        template.preUserFunc = TYPO3Incubator\SurfcampBase\UserFunctions\FileResolver->resolveContentsForFileReferenceLocalId
         template.ifBlank = <p>no template found</p>
-        templateName >
-
-#        templateName = ApiDataLink
-        #file = TEXT
-        #file.value = /var/www/html/public/fileadmin/user_upload/foobar.html
-#        file.stdWrap {
-#            cObject = USER
-#            cObject {
-#                userFunc = TYPO3Incubator\SurfcampBase\UserFunctions\ResolveUploadedTemplate->resolveTemplate
-#            }
-#        }
     }
 }
