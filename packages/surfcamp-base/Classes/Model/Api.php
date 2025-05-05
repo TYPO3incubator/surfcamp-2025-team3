@@ -6,17 +6,12 @@ namespace TYPO3Incubator\SurfcampBase\Model;
 
 class Api
 {
-    private string $name;
-    private string $baseUrl;
-    private array $additionalHeaders;
-    private array $endpoints;
-
-    public function __construct(string $name, string $baseUrl, array $additionalHeaders, array $endpoints = [])
-    {
-        $this->name = $name;
-        $this->baseUrl = $baseUrl;
-        $this->additionalHeaders = $additionalHeaders;
-        $this->endpoints = $endpoints;
+    public function __construct(
+        private readonly string $name,
+        private readonly string $baseUrl,
+        private readonly array $additionalHeaders,
+        private readonly array $endpoints = []
+    ) {
     }
 
     public function getName(): string

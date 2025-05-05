@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace TYPO3Incubator\SurfcampBase\Repository;
 
 use Doctrine\DBAL\Exception;
