@@ -1,6 +1,5 @@
 /bin/
 /public/*
-!/public/apitemplates/
 /var/
 /vendor/
 /typo3_core/

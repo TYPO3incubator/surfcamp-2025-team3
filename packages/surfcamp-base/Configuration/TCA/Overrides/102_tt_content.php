@@ -8,12 +8,10 @@ ExtensionManagementUtility::addTCAcolumns(
     'tt_content',
     [
         'template' => [
-            'label' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:field.layout',
+            'label' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:field.template',
             'config' => [
-                'type' => 'select',
-                'renderType' => 'selectSingle',
-                'foreign_table' => 'sys_file',
-                'foreign_table_where' => 'AND sys_file.storage = 2 ORDER BY uid',
+                'type' => 'file',
+                'allowed' => 'html',
             ],
         ]
     ]

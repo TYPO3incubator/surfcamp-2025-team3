@@ -21,6 +21,9 @@
             <trans-unit id="content_element.api_data_link.description">
                 <source>This is a content element for linking different APIs.</source>
             </trans-unit>
+            <trans-unit id="field.template">
+                <source>Template</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>
