@@ -22,6 +22,7 @@ return [
         'security' => [
             'ignorePageTypeRestriction' => true,
         ],
+        'hideTable' => true,
     ],
     'columns' => [
         'base' => [
