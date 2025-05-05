@@ -62,9 +62,4 @@ class ApiAggregationDataProcessor implements DataProcessorInterface
         $endpointUrl = str_starts_with($endpointUrl, '/') ? substr($endpointUrl, 1) : $endpointUrl;
         return $baseUrl . $endpointUrl;
     }
-
-    protected function mapValues(array $responseBody): array
-    {
-        return $this->apiDataMappingService->mapValues($responseBody);
-    }
 }
