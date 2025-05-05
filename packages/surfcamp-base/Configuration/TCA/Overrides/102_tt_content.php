@@ -12,6 +12,7 @@ ExtensionManagementUtility::addTCAcolumns(
             'config' => [
                 'type' => 'file',
                 'allowed' => 'html',
+                'maxitems' => 1,
             ],
         ]
     ]

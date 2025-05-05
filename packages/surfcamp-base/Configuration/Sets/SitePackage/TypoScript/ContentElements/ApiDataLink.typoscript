@@ -1,6 +1,14 @@
 tt_content {
     api_data_link =< lib.contentElement
     api_data_link {
-        templateName = ApiDataLink
+#        templateName = ApiDataLink
+        file = TEXT
+        file.value = /var/www/html/public/fileadmin/user_upload/foobar.html
+#        file.stdWrap {
+#            cObject = USER
+#            cObject {
+#                userFunc = TYPO3Incubator\SurfcampBase\UserFunctions\ResolveUploadedTemplate->resolveTemplate
+#            }
+#        }
     }
 }

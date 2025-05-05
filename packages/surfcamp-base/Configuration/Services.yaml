@@ -6,9 +6,3 @@ services:
 
   TYPO3Incubator\SurfcampBase\:
     resource: '../Classes/*'
-
-  TYPO3Incubator\SurfcampBase\EventListener\MoveHtmlAfterUpload:
-    tags:
-      - name: event.listener
-        identifier: 'surfcamp-base/move-html-after-upload'
-        event: TYPO3\CMS\Core\Resource\Event\BeforeFileCreatedEvent
