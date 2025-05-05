@@ -12,13 +12,10 @@ use TYPO3Incubator\SurfcampBase\Repository\ApiEndpointRepository;
 
 readonly class ApiFactory
 {
-    private ApiBaseRepository $baseRepository;
-    private ApiEndpointRepository $endpointRepository;
-
-    public function __construct()
-    {
-        $this->baseRepository = GeneralUtility::makeInstance(ApiBaseRepository::class);
-        $this->endpointRepository = GeneralUtility::makeInstance(ApiEndpointRepository::class);
+    public function __construct(
+        private ApiBaseRepository $baseRepository,
+        private ApiEndpointRepository $endpointRepository
+    ) {
     }
 
     /**
