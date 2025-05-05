@@ -136,7 +136,7 @@ return [
         'displayErrors' => 1,
         'encryptionKey' => '<set in dotenv>',
         'exceptionalErrors' => 12290,
-        'sitename' => 'Surfcamp Template',
+        'sitename' => 'Surfcamp Templates',
         'systemMaintainers' => [
             1,
         ],

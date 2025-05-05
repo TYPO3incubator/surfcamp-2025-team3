@@ -1,5 +1,5 @@
 /bin/
-/public/
+/public/*
 /var/
 /vendor/
 /typo3_core/
@@ -9,4 +9,4 @@
 .env
 .DS_Store
 .history
-/node_modules/*
+/node_modules/
