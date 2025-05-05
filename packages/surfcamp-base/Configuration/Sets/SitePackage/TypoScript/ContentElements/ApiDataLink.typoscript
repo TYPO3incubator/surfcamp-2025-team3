@@ -1,7 +1,10 @@
 tt_content {
-    api_data_link =< lib.contentElement
+    api_data_link = FLUIDTEMPLATE
     api_data_link {
-        templateName = ApiDataLink
+        template = TEXT
+        template.field = uid
+        template.preUserFunc = TYPO3Incubator\SurfcampBase\UserFunctions\FileResolver->resolveContentsForFileReferenceLocalId
+        template.ifBlank = <p>no template found</p>
         dataProcessing.10 = TYPO3Incubator\SurfcampBase\DataProcessors\ApiAggregationDataProcessor
     }
 }
