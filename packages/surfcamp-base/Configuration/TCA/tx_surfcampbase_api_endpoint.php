@@ -18,10 +18,11 @@ return [
             'endtime' => 'endtime',
         ],
         'searchFields' => '',
-        'iconfile' => 'EXT:surfcamp_base/Resources/Public/Icons/Extension.svg',
+        'iconfile' => 'EXT:surfcamp_base/Resources/Public/Icons/api-endpoint.svg',
         'security' => [
             'ignorePageTypeRestriction' => true,
         ],
+        'hideTable' => true,
     ],
     'columns' => [
         'base' => [
