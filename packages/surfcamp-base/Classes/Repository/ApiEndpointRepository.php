@@ -58,11 +58,11 @@ class ApiEndpointRepository
                 ->fetchAllAssociative();
 
             $endpoints = [];
+
             foreach ($records as $record) {
                 $endpoints[] = [
                     $record['name'],
-                    $record['path'],
-                    json_decode($record['mappings'] ?? '[]', true)
+                    $record['path']
                 ];
             }
 

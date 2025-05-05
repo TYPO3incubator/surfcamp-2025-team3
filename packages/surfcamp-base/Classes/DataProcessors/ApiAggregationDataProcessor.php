@@ -32,7 +32,7 @@ class ApiAggregationDataProcessor implements DataProcessorInterface
         array $processedData
     ): array {
         $targetVariableName = $cObj->stdWrapValue('as', $processorConfiguration, 'apiValues');
-        $endpointUid = (int)($cObj->data['endpoint'] ?? 0);
+        $endpointUid = (int)($cObj->data['api_endpoint'] ?? 0);
 
         $responseBody = $this->fetchApiData($endpointUid);
         $processedData[$targetVariableName] = $this->mapValues($responseBody);
@@ -49,8 +49,8 @@ class ApiAggregationDataProcessor implements DataProcessorInterface
         $endpoint = $this->apiEndpointRepository->findByUid($endpointUid);
         $base = $this->apiBaseRepository->findByUid((int)($endpoint['base'] ?? 0));
         return $this->apiClient->get(
-            $this->getUrl($base['base_url'] ?? '', $endpoint['path'] ?? ''),
-            $base['additional_headers'] ?? []
+            $this->getUrl($base->getBaseUrl() ?? '', $endpoint['path'] ?? ''),
+            $base->getAdditionalHeaders() ?? []
         );
     }
 
