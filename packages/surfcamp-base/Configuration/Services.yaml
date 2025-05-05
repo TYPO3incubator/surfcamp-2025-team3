@@ -7,6 +7,12 @@ services:
   TYPO3Incubator\SurfcampBase\:
     resource: '../Classes/*'
 
+  TYPO3Incubator\SurfcampBase\Repository\ApiBaseRepository:
+    public: true
+
+  TYPO3Incubator\SurfcampBase\Repository\ApiEndpointRepository:
+    public: true
+
   TYPO3Incubator\SurfcampBase\DataProcessors\ApiAggregationDataProcessor:
     tags:
       - name: 'data.processor'

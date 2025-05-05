@@ -22,7 +22,7 @@ class ApiEndpointRepository
     /**
      * @throws NotFoundException
      */
-    public function findByUid(int $uid): array
+    public function findByUid(int $uid): array|false
     {
         $queryBuilder = $this->getQueryBuilder();
         try {

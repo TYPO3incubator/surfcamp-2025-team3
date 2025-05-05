@@ -9,14 +9,13 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 use TYPO3Incubator\SurfcampBase\Api\ApiClient;
 use TYPO3Incubator\SurfcampBase\Exception\NotFoundException;
-use TYPO3Incubator\SurfcampBase\Repository\ApiBaseRepository;
+use TYPO3Incubator\SurfcampBase\Factory\ApiFactory;
 use TYPO3Incubator\SurfcampBase\Repository\ApiEndpointRepository;
 use TYPO3Incubator\SurfcampBase\Service\ApiDataMappingService;
 
 class ApiAggregationDataProcessor implements DataProcessorInterface
 {
     public function __construct(
-        private readonly ApiBaseRepository $apiBaseRepository,
         private readonly ApiEndpointRepository $apiEndpointRepository,
         private readonly ApiClient $apiClient,
         private readonly ApiDataMappingService $apiDataMappingService
@@ -25,7 +24,8 @@ class ApiAggregationDataProcessor implements DataProcessorInterface
 
     /**
      * @throws NotFoundException
-     * @throws GuzzleException
+     * @throws GuzzleException|
+     * @throws \JsonException
      */
     public function process(
         ContentObjectRenderer $cObj,
@@ -45,14 +45,16 @@ class ApiAggregationDataProcessor implements DataProcessorInterface
     /**
      * @throws NotFoundException
      * @throws GuzzleException
+     * @throws \JsonException
      */
     protected function fetchApiData(int $endpointUid): array
     {
+        $apiFactory = new ApiFactory();
         $endpoint = $this->apiEndpointRepository->findByUid($endpointUid);
-        $base = $this->apiBaseRepository->findByUid((int)($endpoint['base'] ?? 0));
+        $base = $apiFactory->create($endpoint['base'] ?? 0);
         return $this->apiClient->get(
-            $this->getUrl($base->getBaseUrl() ?? '', $endpoint['path'] ?? ''),
-            $base->getAdditionalHeaders() ?? []
+            $this->getUrl($base->baseUrl ?? '', $endpoint['path'] ?? ''),
+            $base->additionalHeaders ?? []
         );
     }
 
