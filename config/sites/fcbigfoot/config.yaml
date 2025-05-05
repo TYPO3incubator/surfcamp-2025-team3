@@ -1,5 +1,6 @@
 base: '%env(SITE_FCBIGFOOT_BASE)%'
 dependencies:
+  - typo3-incubator/surfcamp-base
   - typo3-incubator/theme-fcbigfoot
 languages:
   -

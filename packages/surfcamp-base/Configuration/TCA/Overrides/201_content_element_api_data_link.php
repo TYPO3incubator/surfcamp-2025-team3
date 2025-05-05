@@ -25,5 +25,6 @@ ExtensionManagementUtility::addTcaSelectItem(
 $GLOBALS['TCA']['tt_content']['types'][$key] = [
     'showitem' => '
            template,
+           api_endpoint,
         ',
 ];

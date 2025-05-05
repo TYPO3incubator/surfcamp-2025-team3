@@ -13,6 +13,15 @@ ExtensionManagementUtility::addTCAcolumns(
                 'type' => 'file',
                 'allowed' => 'html',
             ],
-        ]
+        ],
+        'api_endpoint' => [
+            'exclude' => true,
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'foreign_table' => 'tx_surfcampbase_api_endpoint',
+                'maxitems' => 1,
+            ]
+        ],
     ]
 );
