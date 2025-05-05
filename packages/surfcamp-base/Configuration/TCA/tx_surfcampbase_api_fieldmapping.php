@@ -14,11 +14,8 @@ return [
         'translationSource' => 'l10n_source',
         'delete' => 'deleted',
         'sortby' => 'crdate',
-        'searchFields' => '',
+        'searchFields' => 'source,target',
         'iconfile' => 'EXT:surfcamp_base/Resources/Public/Icons/Extension.svg',
-        'security' => [
-            'ignorePageTypeRestriction' => true,
-        ],
         'hideTable' => true,
     ],
     'columns' => [
