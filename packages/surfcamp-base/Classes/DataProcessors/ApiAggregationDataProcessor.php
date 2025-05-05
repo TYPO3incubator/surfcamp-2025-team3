@@ -11,13 +11,15 @@ use TYPO3Incubator\SurfcampBase\Api\ApiClient;
 use TYPO3Incubator\SurfcampBase\Exception\NotFoundException;
 use TYPO3Incubator\SurfcampBase\Repository\ApiBaseRepository;
 use TYPO3Incubator\SurfcampBase\Repository\ApiEndpointRepository;
+use TYPO3Incubator\SurfcampBase\Service\ApiDataMappingService;
 
 class ApiAggregationDataProcessor implements DataProcessorInterface
 {
     public function __construct(
         private readonly ApiBaseRepository $apiBaseRepository,
         private readonly ApiEndpointRepository $apiEndpointRepository,
-        private readonly ApiClient $apiClient
+        private readonly ApiClient $apiClient,
+        private readonly ApiDataMappingService $apiDataMappingService
     ) {
     }
 
@@ -35,7 +37,7 @@ class ApiAggregationDataProcessor implements DataProcessorInterface
         $endpointUid = (int)($cObj->data['api_endpoint'] ?? 0);
 
         $responseBody = $this->fetchApiData($endpointUid);
-        $processedData[$targetVariableName] = $this->mapValues($responseBody);
+        $processedData[$targetVariableName] = $this->apiDataMappingService->mapValues($endpointUid, $responseBody);
 
         return $processedData;
     }
@@ -63,6 +65,6 @@ class ApiAggregationDataProcessor implements DataProcessorInterface
 
     protected function mapValues(array $responseBody): array
     {
-        return [];
+        return $this->apiDataMappingService->mapValues($responseBody);
     }
 }

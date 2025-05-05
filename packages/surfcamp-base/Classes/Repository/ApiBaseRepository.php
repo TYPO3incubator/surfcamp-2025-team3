@@ -53,7 +53,7 @@ class ApiBaseRepository
         return new Api(
             $record['name'] ?? '',
             $record['base_url'] ?? '',
-            $record['additional_headers'] ?? [],
+            (array) $record['additional_headers'] ?? [],
             $endpoints
         );
     }

@@ -73,30 +73,6 @@ class ApiEndpointRepository
         }
     }
 
-    /**
-     * @throws NotFoundException
-     */
-    public function findMappingsForUid(int $uid): array
-    {
-        $queryBuilder = $this->getQueryBuilder();
-        try {
-            return $queryBuilder->select('*')
-                ->from('tx_surfcampbase_api_mappings')
-                ->where(
-                    $queryBuilder->expr()->eq(
-                        'api_endpoint',
-                        $queryBuilder->createNamedParameter($uid, ParameterType::INTEGER)
-                    ),
-                )->executeQuery()
-                ->fetchAllAssociative();
-        } catch (Exception $e) {
-            $this->logger->error($e->getMessage());
-            throw new NotFoundException('No mappings found', 1746373658);
-        }
-    }
-
-
-
     private function getQueryBuilder(): QueryBuilder
     {
         return GeneralUtility::makeInstance(ConnectionPool::class)
