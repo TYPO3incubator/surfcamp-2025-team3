@@ -94,6 +94,9 @@
             <trans-unit id="fieldmapping.target_datatype.items.datetime" resname="fieldmapping.target_datatype.items.datetime">
                 <source>Datetime</source>
             </trans-unit>
+            <trans-unit id="fieldmapping.target_datatype.items.array" resname="fieldmapping.target_datatype.items.array">
+                <source>Array / Object</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>
