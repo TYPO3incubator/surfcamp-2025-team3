@@ -17,10 +17,33 @@ return [
         'searchFields' => 'source,target',
         'iconfile' => 'EXT:surfcamp_base/Resources/Public/Icons/Extension.svg',
         'hideTable' => true,
+        'enablecolumns' => [
+            'disabled' => 'hidden',
+            'starttime' => 'starttime',
+            'endtime' => 'endtime',
+        ],
+    ],
+    'palettes' => [
+        'mapping_details' => [
+            'showitem' => '
+                api_endpoint,
+                source,
+                --linebreak--,
+                target,
+                target_datatype,
+            '
+        ],
+    ],
+    'types' => [
+        0 => [
+            'showitem' => '
+                --palette--;;mapping_details,'
+        ],
     ],
     'columns' => [
         'api_endpoint' => [
             'exclude' => true,
+            'label' => $LLL . ':tx_surfcampbase_api_endpoint',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
@@ -83,22 +106,5 @@ return [
                 ],
             ],
         ]
-    ],
-    'palettes' => [
-        'mapping_details' => [
-            'showitem' => '
-                api_endpoint,
-                source,
-                --linebreak--,
-                target,
-                target_datatype,
-            '
-        ],
-    ],
-    'types' => [
-        0 => [
-            'showitem' => '
-                --palette--;;mapping_details,'
-        ],
     ],
 ];

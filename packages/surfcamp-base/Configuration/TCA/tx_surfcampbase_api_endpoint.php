@@ -20,67 +20,7 @@ return [
         'searchFields' => 'name',
         'iconfile' => 'EXT:surfcamp_base/Resources/Public/Icons/api-endpoint.svg',
         'hideTable' => true,
-    ],
-    'columns' => [
-        'base' => [
-            'exclude' => true,
-            'config' => [
-                'type' => 'select',
-                'renderType' => 'selectSingle',
-                'foreign_table' => 'tx_surfcampbase_api_base',
-                'maxitems' => 1,
-                'default' => 0,
-            ],
-        ],
-        'name' => [
-            'l10n_mode' => 'prefixLangTitle',
-            'label' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:tx_surfcampbase_api_endpoint.name',
-            'config' => [
-                'type' => 'input',
-                'behaviour' => [
-                    'allowLanguageSynchronization' => true,
-                ],
-            ],
-        ],
-        'path' => [
-            'l10n_mode' => 'prefixLangTitle',
-            'label' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:tx_surfcampbase_api_endpoint.path',
-            'description' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:tx_surfcampbase_api_endpoint.path.description',
-            'config' => [
-                'type' => 'input',
-                'behaviour' => [
-                    'allowLanguageSynchronization' => true,
-                ],
-            ],
-        ],
-        'mappings' => [
-            'config' => [
-                'type' => 'inline',
-                'foreign_table' => 'tx_surfcampbase_api_fieldmapping',
-                'foreign_field' => 'api_endpoint',
-                'appearance' => [
-                    'useSortable' => true,
-                    'showSynchronizationLink' => true,
-                    'showAllLocalizationLink' => true,
-                    'showPossibleLocalizationRecords' => true,
-                    'expandSingle' => true,
-                    'enabledControls' => [
-                        'localize' => true,
-                        'info' => false,
-                        'dragdrop' => true,
-                        'sort' => true,
-                        'hide' => true,
-                        'delete' => true,
-                        'new' => true,
-                    ],
-                ],
-                'behaviour' => [
-                    'mode' => 'select',
-                ],
-            ],
-        ]
-    ],
-    'types' => [
+    ],    'types' => [
         '0' => [
             'showitem' => '
                 --div--;LLL:EXT:setup/Resources/Private/Language/locallang.xlf:personal_data,
@@ -111,5 +51,67 @@ return [
             'showitem' => 'sys_language_uid, l10n_parent',
             'isHiddenPalette' => true,
         ],
-]
+    ],
+    'columns' => [
+        'base' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:tx_surfcampbase_api_base',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'foreign_table' => 'tx_surfcampbase_api_base',
+                'maxitems' => 1,
+                'default' => 0,
+            ],
+        ],
+        'name' => [
+            'l10n_mode' => 'prefixLangTitle',
+            'label' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:tx_surfcampbase_api_endpoint.name',
+            'config' => [
+                'type' => 'input',
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
+            ],
+        ],
+        'path' => [
+            'l10n_mode' => 'prefixLangTitle',
+            'label' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:tx_surfcampbase_api_endpoint.path',
+            'description' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:tx_surfcampbase_api_endpoint.path.description',
+            'config' => [
+                'type' => 'input',
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
+            ],
+        ],
+        'mappings' => [
+            'label' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:fieldmapping.title',
+            'config' => [
+                'type' => 'inline',
+                'foreign_table' => 'tx_surfcampbase_api_fieldmapping',
+                'foreign_field' => 'api_endpoint',
+                'appearance' => [
+                    'useSortable' => true,
+                    'showSynchronizationLink' => true,
+                    'showAllLocalizationLink' => true,
+                    'showPossibleLocalizationRecords' => true,
+                    'expandSingle' => true,
+                    'collapseAll' => true,
+                    'enabledControls' => [
+                        'localize' => true,
+                        'info' => false,
+                        'dragdrop' => true,
+                        'sort' => true,
+                        'hide' => true,
+                        'delete' => true,
+                        'new' => true,
+                    ],
+                ],
+                'behaviour' => [
+                    'mode' => 'select',
+                ],
+            ],
+        ]
+    ],
 ];

@@ -45,7 +45,7 @@
 
             <!-- api_base record -->
             <trans-unit id="tx_surfcampbase_api_base">
-                <source>API Base confiuration</source>
+                <source>API Base configuration</source>
             </trans-unit>
             <trans-unit id="tx_surfcampbase_api_base.name">
                 <source>API Name</source>
