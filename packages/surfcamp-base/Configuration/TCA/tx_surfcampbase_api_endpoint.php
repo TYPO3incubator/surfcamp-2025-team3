@@ -90,8 +90,8 @@ return [
             'label' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:tx_surfcampbase_api_endpoint.response',
             'description' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:tx_surfcampbase_api_endpoint.response.description',
             'config' => [
-                'type' => 'text',
-                'eval' => TYPO3Incubator\SurfcampBase\Backend\Evaluation\ApiResponseEval::class,
+                'type' => 'user',
+                'renderType' => 'apiResponseField',
             ],
         ],
         'mappings' => [
