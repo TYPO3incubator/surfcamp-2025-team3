@@ -10,8 +10,8 @@ use TYPO3\CMS\Core\Utility\ArrayUtility;
 
 class JsonResponseHandler implements HandlerInterface
 {
-    private const CONTENT_TYPE = 'application/json';
-    private const NESTED_KEY_SEPARATOR = '.';
+    private const string CONTENT_TYPE = 'application/json';
+    private const string NESTED_KEY_SEPARATOR = '.';
 
     public function map(ResponseInterface $response, RecordInterface $endpoint): array
     {
