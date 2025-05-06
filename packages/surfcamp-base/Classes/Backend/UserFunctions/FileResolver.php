@@ -2,14 +2,11 @@
 
 declare(strict_types=1);
 
-namespace TYPO3Incubator\SurfcampBase\UserFunctions;
+namespace TYPO3Incubator\SurfcampBase\Backend\UserFunctions;
 
-use Psr\Http\Message\ServerRequestInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
-use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException;
 use TYPO3\CMS\Core\Resource\FileRepository;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 #[Autoconfigure(public: true)]
 readonly class FileResolver
