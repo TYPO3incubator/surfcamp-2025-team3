@@ -15,7 +15,8 @@ use TYPO3Incubator\SurfcampBase\Exception\NotFoundException;
 class ApiEndpointRepository
 {
     public function __construct(
-        private readonly LoggerInterface $logger
+        private readonly LoggerInterface $logger,
+        protected QueryBuilder $queryBuilder
     ) {
     }
 
@@ -24,7 +25,7 @@ class ApiEndpointRepository
      */
     public function findByUid(int $uid): array|false
     {
-        $queryBuilder = $this->getQueryBuilder();
+        $queryBuilder = clone $this->queryBuilder;
         try {
             return $queryBuilder->select('*')
                 ->from('tx_surfcampbase_api_endpoint')
@@ -39,42 +40,5 @@ class ApiEndpointRepository
             $this->logger->error($e->getMessage());
             throw new NotFoundException('Endpoint not found', 1746373658);
         }
-    }
-
-    public function findByBaseUid(int $baseUid): array
-    {
-        $queryBuilder = $this->getQueryBuilder();
-        try {
-            $records = $queryBuilder->select('*')
-                ->from('tx_surfcampbase_api_endpoint')
-                ->where(
-                    $queryBuilder->expr()->eq(
-                        'base',
-                        $queryBuilder->createNamedParameter($baseUid, ParameterType::INTEGER)
-                    )
-                )
-                ->executeQuery()
-                ->fetchAllAssociative();
-
-            $endpoints = [];
-
-            foreach ($records as $record) {
-                $endpoints[] = [
-                    $record['name'],
-                    $record['path']
-                ];
-            }
-
-            return $endpoints;
-        } catch (Exception $e) {
-            $this->logger->error($e->getMessage());
-            return [];
-        }
-    }
-
-    private function getQueryBuilder(): QueryBuilder
-    {
-        return GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getQueryBuilderForTable('tx_surfcampbase_api_endpoint');
     }
 }
