@@ -4,11 +4,25 @@ services:
     autoconfigure: true
     public: false
 
+  _instanceof:
+    TYPO3Incubator\SurfcampBase\Http\HandlerInterface:
+      tags: [ 'handler' ]
+
   TYPO3Incubator\SurfcampBase\:
     resource: '../Classes/*'
 
-  TYPO3Incubator\SurfcampBase\Repository\ApiBaseRepository:
-    public: true
+  TYPO3Incubator\SurfcampBase\Http\ResponseHandler:
+    arguments: [ !tagged_iterator handler ]
+
+  querybuilder.tx_surfcampbase_api_endpoint:
+    class: 'TYPO3\CMS\Core\Database\Query\QueryBuilder'
+    factory:
+      - '@TYPO3\CMS\Core\Database\ConnectionPool'
+      - 'getQueryBuilderForTable'
+    arguments:
+      - 'tx_surfcampbase_api_endpoint'
 
   TYPO3Incubator\SurfcampBase\Repository\ApiEndpointRepository:
     public: true
+    arguments:
+      $queryBuilder: '@querybuilder.tx_surfcampbase_api_endpoint'
