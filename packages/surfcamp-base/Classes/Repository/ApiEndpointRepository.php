@@ -45,7 +45,7 @@ class ApiEndpointRepository
     {
         $queryBuilder = $this->getQueryBuilder();
         try {
-            $records = $queryBuilder->select('*')
+            return $queryBuilder->select('*')
                 ->from('tx_surfcampbase_api_endpoint')
                 ->where(
                     $queryBuilder->expr()->eq(
@@ -55,17 +55,6 @@ class ApiEndpointRepository
                 )
                 ->executeQuery()
                 ->fetchAllAssociative();
-
-            $endpoints = [];
-
-            foreach ($records as $record) {
-                $endpoints[] = [
-                    $record['name'],
-                    $record['path']
-                ];
-            }
-
-            return $endpoints;
         } catch (Exception $e) {
             $this->logger->error($e->getMessage());
             return [];

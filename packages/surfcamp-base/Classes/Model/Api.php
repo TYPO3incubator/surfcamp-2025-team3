@@ -10,7 +10,8 @@ readonly class Api
         public string $name,
         public string $baseUrl,
         public array $additionalHeaders,
-        public array $endpoints = []
+        public array $endpoints = [],
+        public array $mappings = []
     ) {
     }
 }

@@ -25,7 +25,7 @@ class ApiMappingRepository
     {
         $queryBuilder = $this->getQueryBuilder();
         try {
-            $results =  $queryBuilder->select('*')
+            return  $queryBuilder->select('*')
                 ->from('tx_surfcampbase_api_fieldmapping')
                 ->where(
                     $queryBuilder->expr()->eq(
@@ -34,7 +34,6 @@ class ApiMappingRepository
                     ),
                 )->executeQuery()
                 ->fetchAllAssociative();
-            return $results;
         } catch (Exception $e) {
             $this->logger->error($e->getMessage());
             throw new NotFoundException('No mappings found', 1746373658);
