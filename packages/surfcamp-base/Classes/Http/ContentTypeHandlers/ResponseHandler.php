@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace TYPO3Incubator\SurfcampBase\Http;
+namespace TYPO3Incubator\SurfcampBase\Http\ContentTypeHandlers;
 
 use Psr\Http\Message\ResponseInterface;
 use RuntimeException;
-use TYPO3\CMS\Core\Domain\Record;
 use TYPO3\CMS\Core\Domain\RecordInterface;
 
 readonly class ResponseHandler
@@ -15,11 +14,11 @@ readonly class ResponseHandler
     {
     }
 
-    public function mapResponse(ResponseInterface $response, RecordInterface $endpoint): array
+    public function resolveResponseBody(ResponseInterface $response, RecordInterface $endpoint): array
     {
         foreach ($this->handlers as $handler) {
             if ($handler->isResponsible($response->getHeaderLine('Content-Type'))) {
-                return $handler->map($response, $endpoint);
+                return $handler->resolveResponseBody($response, $endpoint);
             }
         }
 

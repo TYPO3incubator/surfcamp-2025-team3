@@ -2,29 +2,21 @@
 
 declare(strict_types=1);
 
-namespace TYPO3Incubator\SurfcampBase\Http;
+namespace TYPO3Incubator\SurfcampBase\Service;
 
-use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Domain\RecordInterface;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 
-class JsonResponseHandler implements HandlerInterface
+class FieldMappingService
 {
-    private const string CONTENT_TYPE = 'application/json';
     private const string NESTED_KEY_SEPARATOR = '.';
 
-    public function map(ResponseInterface $response, RecordInterface $endpoint): array
+    public function map(array $data, RecordInterface $endpoint): array
     {
-        $data = $this->decodeResponseBody($response);
         $flattenedData = ArrayUtility::flatten($data);
         $mappings = $endpoint->get('mappings');
 
         return $this->processMappings($mappings, $data, $flattenedData);
-    }
-
-    private function decodeResponseBody(ResponseInterface $response): array
-    {
-        return json_decode($response->getBody()->getContents(), true);
     }
 
     private function processMappings(iterable $mappings, array $data, array $flattenedData): array
@@ -89,10 +81,5 @@ class JsonResponseHandler implements HandlerInterface
     {
         settype($value, $type);
         return $value;
-    }
-
-    public function isResponsible(string $type): bool
-    {
-        return $type === self::CONTENT_TYPE;
     }
 }

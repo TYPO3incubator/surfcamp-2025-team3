@@ -5,13 +5,13 @@ services:
     public: false
 
   _instanceof:
-    TYPO3Incubator\SurfcampBase\Http\HandlerInterface:
+    TYPO3Incubator\SurfcampBase\Http\ContentTypeHandlers\HandlerInterface:
       tags: [ 'handler' ]
 
   TYPO3Incubator\SurfcampBase\:
     resource: '../Classes/*'
 
-  TYPO3Incubator\SurfcampBase\Http\ResponseHandler:
+  TYPO3Incubator\SurfcampBase\Http\ContentTypeHandlers\ResponseHandler:
     arguments: [ !tagged_iterator handler ]
 
   querybuilder.tx_surfcampbase_api_endpoint:

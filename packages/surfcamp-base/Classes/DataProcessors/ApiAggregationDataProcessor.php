@@ -14,8 +14,9 @@ use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 use TYPO3Incubator\SurfcampBase\Exception\NotFoundException;
 use TYPO3Incubator\SurfcampBase\Factory\ApiFactory;
 use TYPO3Incubator\SurfcampBase\Http\Api\ApiClient;
-use TYPO3Incubator\SurfcampBase\Http\ResponseHandler;
+use TYPO3Incubator\SurfcampBase\Http\ContentTypeHandlers\ResponseHandler;
 use TYPO3Incubator\SurfcampBase\Repository\ApiEndpointRepository;
+use TYPO3Incubator\SurfcampBase\Service\FieldMappingService;
 
 #[Autoconfigure(public: true)]
 readonly class ApiAggregationDataProcessor implements DataProcessorInterface
@@ -26,6 +27,7 @@ readonly class ApiAggregationDataProcessor implements DataProcessorInterface
         private ApiFactory $apiFactory,
         private ResponseHandler $responseHandler,
         private RecordFactory $recordFactory,
+        private FieldMappingService $fieldMappingService,
     ) {
     }
 
@@ -44,7 +46,8 @@ readonly class ApiAggregationDataProcessor implements DataProcessorInterface
         $response = $this->fetchApiData($endpoint);
 
         $targetVariableName = $cObj->stdWrapValue('as', $processorConfiguration, 'apiValues');
-        $processedData[$targetVariableName] = $this->responseHandler->mapResponse($response, $endpoint);
+        $responseBodyAsArray = $this->responseHandler->resolveResponseBody($response, $endpoint);
+        $processedData[$targetVariableName] = $this->fieldMappingService->map($responseBodyAsArray, $endpoint);
         return $processedData;
     }
 
