@@ -100,6 +100,10 @@ return [
                         $LLL . ':fieldmapping.target_datatype.items.datetime',
                         'datetime'
                     ],
+                    [
+                        $LLL . ':fieldmapping.target_datatype.items.array',
+                        'array'
+                    ],
                 ],
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
