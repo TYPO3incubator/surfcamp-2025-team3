@@ -15,7 +15,8 @@ use TYPO3Incubator\SurfcampBase\Exception\NotFoundException;
 class ApiEndpointRepository
 {
     public function __construct(
-        private readonly LoggerInterface $logger
+        private readonly LoggerInterface $logger,
+        protected QueryBuilder $queryBuilder
     ) {
     }
 
@@ -24,7 +25,7 @@ class ApiEndpointRepository
      */
     public function findByUid(int $uid): array|false
     {
-        $queryBuilder = $this->getQueryBuilder();
+        $queryBuilder = clone $this->queryBuilder;
         try {
             return $queryBuilder->select('*')
                 ->from('tx_surfcampbase_api_endpoint')

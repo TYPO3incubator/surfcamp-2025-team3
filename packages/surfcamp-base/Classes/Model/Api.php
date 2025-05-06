@@ -9,9 +9,7 @@ readonly class Api
     public function __construct(
         public string $name,
         public string $baseUrl,
-        public array $additionalHeaders,
-        public array $endpoints = [],
-        public array $mappings = []
+        public array $additionalHeaders
     ) {
     }
 }
