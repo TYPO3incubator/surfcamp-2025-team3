@@ -27,6 +27,7 @@ return [
                 base,
                 name,
                 path,
+                response,
                 mappings,
                 --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access,
                 --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.visibility;visibility,
@@ -83,6 +84,14 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
+            ],
+        ],
+        'response' => [
+            'label' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:tx_surfcampbase_api_endpoint.response',
+            'description' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:tx_surfcampbase_api_endpoint.response.description',
+            'config' => [
+                'type' => 'text',
+                'eval' => TYPO3Incubator\SurfcampBase\Backend\Evaluation\ApiResponseEval::class,
             ],
         ],
         'mappings' => [
