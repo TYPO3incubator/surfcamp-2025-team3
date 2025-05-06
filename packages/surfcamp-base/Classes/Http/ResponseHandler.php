@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace TYPO3Incubator\SurfcampBase\Http;
 
 use Psr\Http\Message\ResponseInterface;
+use RuntimeException;
 use TYPO3\CMS\Core\Domain\Record;
 use TYPO3\CMS\Core\Domain\RecordInterface;
 
@@ -22,6 +23,6 @@ readonly class ResponseHandler
             }
         }
 
-        throw new \RuntimeException('No handler found for response');
+        throw new RuntimeException('No handler found for response', 1746549106);
     }
 }
