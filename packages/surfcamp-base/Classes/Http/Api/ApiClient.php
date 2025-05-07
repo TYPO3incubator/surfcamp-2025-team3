@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace TYPO3Incubator\SurfcampBase\Http\Api;
 
-use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
+use RuntimeException;
 use TYPO3\CMS\Core\Http\RequestFactory;
 
 readonly class ApiClient
@@ -17,16 +17,16 @@ readonly class ApiClient
     ) {
     }
 
-    /**
-     * @throws GuzzleException
-     */
     public function get(string $url, array $additionalHeaders): ResponseInterface
     {
-        try {
-            return $this->requestFactory->request($url, 'GET', ['headers' => $additionalHeaders]);
-        } catch (GuzzleException $e) {
-            $this->logger->error($e->getMessage());
-            throw $e;
+        $response = $this->requestFactory->request($url, 'GET', ['headers' => $additionalHeaders]);
+
+        if ($response->getStatusCode() < 300) {
+            $errorMessage = 'Unexpected status code: ' . $response->getStatusCode();
+            $this->logger->error($errorMessage);
+            throw new RuntimeException($errorMessage, code: 1746613028);
         }
+
+        return $response;
     }
 }
