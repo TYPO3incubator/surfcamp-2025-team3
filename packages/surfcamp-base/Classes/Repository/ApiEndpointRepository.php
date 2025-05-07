@@ -7,9 +7,7 @@ namespace TYPO3Incubator\SurfcampBase\Repository;
 use Doctrine\DBAL\Exception;
 use Doctrine\DBAL\ParameterType;
 use Psr\Log\LoggerInterface;
-use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Incubator\SurfcampBase\Exception\NotFoundException;
 
 class ApiEndpointRepository

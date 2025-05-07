@@ -11,15 +11,13 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 use Throwable;
-use TYPO3\CMS\Core\Domain\RecordFactory;
 use TYPO3\CMS\Core\Domain\RecordInterface;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
-use TYPO3Incubator\SurfcampBase\Exception\NotFoundException;
 use TYPO3Incubator\SurfcampBase\Factory\ApiFactory;
+use TYPO3Incubator\SurfcampBase\Factory\EndPointFactory;
 use TYPO3Incubator\SurfcampBase\Http\Api\ApiClient;
 use TYPO3Incubator\SurfcampBase\Http\ContentTypeHandlers\ResponseHandler;
-use TYPO3Incubator\SurfcampBase\Repository\ApiEndpointRepository;
 use TYPO3Incubator\SurfcampBase\Service\FieldMappingService;
 
 #[Autoconfigure(public: true)]
@@ -27,11 +25,10 @@ readonly class ApiAggregationDataProcessor implements DataProcessorInterface
 {
     public function __construct(
         private LoggerInterface $logger,
-        private ApiEndpointRepository $apiEndpointRepository,
         private ApiClient $apiClient,
         private ApiFactory $apiFactory,
+        private EndPointFactory $endPointFactory,
         private ResponseHandler $responseHandler,
-        private RecordFactory $recordFactory,
         private FieldMappingService $fieldMappingService,
     ) {
     }
@@ -45,7 +42,7 @@ readonly class ApiAggregationDataProcessor implements DataProcessorInterface
         $targetVariableName = $cObj->stdWrapValue('as', $processorConfiguration, 'apiValues');
 
         try {
-            $endpoint = $this->getEndpoint($this->getEndpointUid($cObj));
+            $endpoint = $this->endPointFactory->create($this->getEndpointUid($cObj));
             $response = $this->fetchApiData($endpoint);
             $responseBodyAsArray = $this->responseHandler->resolveResponseBody($response, $endpoint);
             $processedData[$targetVariableName] = $this->fieldMappingService->map($responseBodyAsArray, $endpoint);
@@ -54,14 +51,6 @@ readonly class ApiAggregationDataProcessor implements DataProcessorInterface
         }
 
         return $processedData;
-    }
-
-    protected function getEndpoint(int $endpointUid): RecordInterface
-    {
-        return $this->recordFactory->createResolvedRecordFromDatabaseRow(
-            'tx_surfcampbase_api_endpoint',
-            $this->apiEndpointRepository->findByUid($endpointUid)
-        );
     }
 
     /**
