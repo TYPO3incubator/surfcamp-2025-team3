@@ -12,4 +12,11 @@ readonly class Api
         public array $additionalHeaders
     ) {
     }
+
+    public function getApiUrl(string $endpointUrl): string
+    {
+        $baseUrl = str_ends_with($this->baseUrl, '/') ? $this->baseUrl : $this->baseUrl . '/';
+        $endpointUrl = str_starts_with($endpointUrl, '/') ? substr($endpointUrl, 1) : $endpointUrl;
+        return $baseUrl . $endpointUrl;
+    }
 }

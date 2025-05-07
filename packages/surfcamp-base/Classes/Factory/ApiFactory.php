@@ -4,16 +4,18 @@ declare(strict_types=1);
 
 namespace TYPO3Incubator\SurfcampBase\Factory;
 
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use TYPO3\CMS\Core\Domain\Record;
-use TYPO3Incubator\SurfcampBase\Exception\NotFoundException;
 use TYPO3Incubator\SurfcampBase\Model\Api;
-use TYPO3Incubator\SurfcampBase\Repository\ApiBaseRepository;
-use TYPO3Incubator\SurfcampBase\Repository\ApiEndpointRepository;
 
 readonly class ApiFactory
 {
     /**
-     * @throws NotFoundException|\JsonException
+     * @param Record $base
+     * @return Api
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
     public function create(Record $base): Api
     {
