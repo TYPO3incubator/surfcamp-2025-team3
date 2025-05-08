@@ -20,7 +20,8 @@ return [
         'searchFields' => 'name',
         'iconfile' => 'EXT:surfcamp_base/Resources/Public/Icons/api-endpoint.svg',
         'hideTable' => true,
-    ],    'types' => [
+    ],
+    'types' => [
         '0' => [
             'showitem' => '
                 --div--;LLL:EXT:setup/Resources/Private/Language/locallang.xlf:personal_data,
@@ -29,7 +30,7 @@ return [
                 path,
                 type,
                 body,
-//                response,
+                fixed_mappings,
                 mappings,
                 --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access,
                 --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.visibility;visibility,
@@ -118,12 +119,46 @@ return [
 //                'renderType' => 'apiResponseField',
 //            ],
 //        ],
+        'fixed_mappings' => [
+            'label' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:fieldmapping.fixed.title',
+            'description' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:fieldmapping.fixed.description',
+            'config' => [
+                'type' => 'inline',
+                'foreign_table' => 'tx_surfcampbase_api_fieldmapping',
+                'foreign_field' => 'api_endpoint',
+                'foreign_match_fields' => [
+                    'is_preset' => 1,
+                ],
+                'foreign_table_where' => ' AND tx_surfcampbase_api_fieldmapping.parent_field = ###REC_FIELD_topic###',
+                'appearance' => [
+                    'useSortable' => true,
+                    'showNewRecordLink' => false,
+                    'showSynchronizationLink' => true,
+                    'showAllLocalizationLink' => true,
+                    'showPossibleLocalizationRecords' => true,
+                    'expandSingle' => true,
+                    'collapseAll' => true,
+                    'enabledControls' => [
+                        'localize' => true,
+                        'info' => false,
+                        'dragdrop' => false,
+                        'sort' => false,
+                        'hide' => false,
+                        'delete' => false,
+                        'new' => false,
+                    ],
+                ],
+            ],
+        ],
         'mappings' => [
             'label' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:fieldmapping.title',
             'config' => [
                 'type' => 'inline',
                 'foreign_table' => 'tx_surfcampbase_api_fieldmapping',
                 'foreign_field' => 'api_endpoint',
+                'foreign_match_fields' => [
+                    'parent_field' => 'none',
+                ],
                 'appearance' => [
                     'useSortable' => true,
                     'showSynchronizationLink' => true,

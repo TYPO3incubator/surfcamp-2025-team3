@@ -26,7 +26,7 @@ return [
         0 => [
             'showitem' => '
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-                name,base_url,additional_headers,endpoints,
+                name,topic,base_url,additional_headers,endpoints,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                 hidden,--palette--;;timeRestriction,',
         ],
@@ -38,6 +38,28 @@ return [
                 'type' => 'input',
                 'eval' => 'trim',
                 'size' => 200,
+            ],
+        ],
+        'topic' => [
+            'label' => $ll . '.topic',
+            'onChange' => 'reload',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    [
+                        'label' => $ll . '.topic.select',
+                        'value' => '',
+                    ],
+                    [
+                        'label' => $ll . '.topic.weather',
+                        'value' => 'weather',
+                    ],
+                    [
+                        'label' => $ll . '.topic.football',
+                        'value' => 'football',
+                    ],
+                ],
             ],
         ],
         'base_url' => [
