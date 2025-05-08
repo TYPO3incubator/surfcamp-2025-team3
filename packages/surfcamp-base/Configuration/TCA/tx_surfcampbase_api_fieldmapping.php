@@ -1,5 +1,7 @@
 <?php
 
+use TYPO3Incubator\SurfcampBase\Backend\UserFunctions\TargetValueProvider;
+
 $LLL = 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf';
 
 return [
@@ -17,6 +19,7 @@ return [
         'searchFields' => 'source,target',
         'iconfile' => 'EXT:surfcamp_base/Resources/Public/Icons/Extension.svg',
         'hideTable' => true,
+        'type' => 'is_preset',
         'enablecolumns' => [
             'disabled' => 'hidden',
             'starttime' => 'starttime',
@@ -39,8 +42,34 @@ return [
             'showitem' => '
                 --palette--;;mapping_details,'
         ],
+        1 => [
+            'showitem' => '
+                --palette--;;mapping_details,
+            ',
+            'columnsOverrides' => [
+                'target' => [
+                    'config' => [
+                        'readOnly' => true,
+                    ],
+                ],
+            ],
+        ],
     ],
     'columns' => [
+        'parent_field' => [
+            'exclude' => true,
+            'config' => [
+                'type' => 'passthrough',
+                'default' => 'none',
+            ],
+        ],
+        'is_preset' => [
+            'exclude' => true,
+            'config' => [
+                'type' => 'passthrough',
+                'default' => false,
+            ],
+        ],
         'api_endpoint' => [
             'exclude' => true,
             'label' => $LLL . ':tx_surfcampbase_api_endpoint',
@@ -56,6 +85,7 @@ return [
             'description' => $LLL . ':fieldmapping.source.description',
             'config' => [
                 'type' => 'input',
+                'required' => true,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
@@ -66,6 +96,7 @@ return [
             'description' => $LLL . ':fieldmapping.target.description',
             'config' => [
                 'type' => 'input',
+                'required' => true,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],

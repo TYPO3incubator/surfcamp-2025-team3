@@ -9,6 +9,8 @@ services:
       tags: [ 'handler' ]
     TYPO3Incubator\SurfcampBase\Http\Client\ClientInterface:
       tags: [ 'client' ]
+    TYPO3Incubator\SurfcampBase\Backend\Topic\TopicProviderInterface:
+      tags: [ 'provider' ]
 
   TYPO3Incubator\SurfcampBase\:
     resource: '../Classes/*'
@@ -18,6 +20,9 @@ services:
 
   TYPO3Incubator\SurfcampBase\Http\Client\Client:
     arguments: [ !tagged_iterator client ]
+
+  TYPO3Incubator\SurfcampBase\Backend\Topic\TopicManager:
+    arguments: [ !tagged_iterator provider ]
 
   querybuilder.tx_surfcampbase_api_endpoint:
     class: 'TYPO3\CMS\Core\Database\Query\QueryBuilder'
@@ -31,3 +36,27 @@ services:
     public: true
     arguments:
       $queryBuilder: '@querybuilder.tx_surfcampbase_api_endpoint'
+
+  querybuilder.tx_surfcampbase_api_fieldmapping:
+    class: 'TYPO3\CMS\Core\Database\Query\QueryBuilder'
+    factory:
+      - '@TYPO3\CMS\Core\Database\ConnectionPool'
+      - 'getQueryBuilderForTable'
+    arguments:
+      - 'tx_surfcampbase_api_fieldmapping'
+
+  TYPO3Incubator\SurfcampBase\Repository\ApiFieldmappingRepository:
+    arguments:
+      $queryBuilder: '@querybuilder.tx_surfcampbase_api_fieldmapping'
+
+  querybuilder.tx_surfcampbase_api_base:
+    class: 'TYPO3\CMS\Core\Database\Query\QueryBuilder'
+    factory:
+      - '@TYPO3\CMS\Core\Database\ConnectionPool'
+      - 'getQueryBuilderForTable'
+    arguments:
+      - 'tx_surfcampbase_api_base'
+
+  TYPO3Incubator\SurfcampBase\Repository\ApiBaseRepository:
+    arguments:
+      $queryBuilder: '@querybuilder.tx_surfcampbase_api_base'

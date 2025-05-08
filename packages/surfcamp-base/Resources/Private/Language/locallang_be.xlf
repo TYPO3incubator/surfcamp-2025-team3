@@ -62,6 +62,18 @@
             <trans-unit id="tx_surfcampbase_api_base.name">
                 <source>API Name</source>
             </trans-unit>
+            <trans-unit id="tx_surfcampbase_api_base.topic">
+                <source>Topic type</source>
+            </trans-unit>
+            <trans-unit id="tx_surfcampbase_api_base.topic.select">
+                <source>-- None --</source>
+            </trans-unit>
+            <trans-unit id="tx_surfcampbase_api_base.topic.weather">
+                <source>Weather</source>
+            </trans-unit>
+            <trans-unit id="tx_surfcampbase_api_base.topic.football">
+                <source>Football</source>
+            </trans-unit>
             <trans-unit id="tx_surfcampbase_api_base.base_url">
                 <source>API base url</source>
             </trans-unit>
@@ -78,6 +90,12 @@
             <!-- api_fieldmapping -->
             <trans-unit id="fieldmapping.title" resname="fieldmapping.title">
                 <source>API field mapping</source>
+            </trans-unit>
+            <trans-unit id="fieldmapping.fixed.title" resname="fieldmapping.fixed.title">
+                <source>API field mapping presets</source>
+            </trans-unit>
+            <trans-unit id="fieldmapping.fixed.description" resname="fieldmapping.fixed.description">
+                <source>All these fields are required for the chosen topic.</source>
             </trans-unit>
             <trans-unit id="fieldmapping.source.title" resname="fieldmapping.source.title">
                 <source>Source</source>
