@@ -10,3 +10,7 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1746549562] = [
     'priority' => 40,
     'class' => \TYPO3Incubator\SurfcampBase\Backend\Form\Element\ApiResponseFieldElement::class,
 ];
+
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['surfcamp_base_api_response'] = [
+    'groups' => ['pages'],
+];

@@ -8,7 +8,7 @@ use TYPO3\CMS\Core\Domain\RecordInterface;
 
 interface ClientInterface
 {
-    public function fetch(RecordInterface $endpoint): ResponseInterface;
+    public function fetch(RecordInterface $endpoint, int $cacheLifetime): array;
 
     public function isResponsible(string $type): bool;
 }

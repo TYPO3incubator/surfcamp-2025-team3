@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
 defined('TYPO3') or die();
@@ -22,7 +23,8 @@ ExtensionManagementUtility::addTcaSelectItem(
 // Configure the default backend fields for the content element
 $GLOBALS['TCA']['tt_content']['types'][$key] = [
     'showitem' => '
-           template,
-           api_endpoint,
-        ',
+        header,    
+        template,
+        api_endpoint,
+    ',
 ];

@@ -14,12 +14,12 @@ readonly class Client
     {
     }
 
-    public function fetch(RecordInterface $endpoint): ResponseInterface
+    public function fetch(RecordInterface $endpoint, int $cacheLifetime = 600): array
     {
         $type = $endpoint->get('type');
         foreach ($this->clients as $client) {
             if ($client->isResponsible($type)) {
-                return $client->fetch($endpoint);
+                return $client->fetch($endpoint, $cacheLifetime);
             }
         }
 
