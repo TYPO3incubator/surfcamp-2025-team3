@@ -123,10 +123,12 @@ return [
             'config' => [
                 'type' => 'user',
                 'renderType' => 'apiResponseField',
+                'readOnly' => true,
             ],
         ],
         'mappings' => [
             'label' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:fieldmapping.title',
+            'displayCond' => 'FIELD:response:REQ:true',
             'config' => [
                 'type' => 'inline',
                 'foreign_table' => 'tx_surfcampbase_api_fieldmapping',
