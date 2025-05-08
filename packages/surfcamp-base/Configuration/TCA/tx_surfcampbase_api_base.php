@@ -53,7 +53,6 @@ return [
             'description' => $ll . '.additional_headers.description',
             'config' => [
                 'type' => 'json',
-                'required' => true,
             ],
         ],
         'endpoints' => [

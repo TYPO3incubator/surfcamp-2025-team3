@@ -27,7 +27,9 @@ return [
                 base,
                 name,
                 path,
-                response,
+                type,
+                body,
+//                response,
                 mappings,
                 --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access,
                 --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.visibility;visibility,
@@ -75,6 +77,28 @@ return [
                 ],
             ],
         ],
+        'type' => [
+            'label' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:tx_surfcampbase_api_endpoint.type',
+            'onChange' => 'reload',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    ['label' => 'JSON/XML', 'value' => 'JSON/XML'],
+                    ['label' => 'GraphQL', 'value' => 'GraphQL'],
+                ]
+            ]
+        ],
+        'body' => [
+            'displayCond' => 'FIELD:type:=:GraphQL',
+            'label' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:tx_surfcampbase_api_endpoint.body',
+            'config' => [
+                'type' => 'text',
+                'renderType' => 'codeEditor',
+                'cols' => 50,
+                'rows' => 10,
+            ],
+        ],
         'path' => [
             'l10n_mode' => 'prefixLangTitle',
             'label' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:tx_surfcampbase_api_endpoint.path',
@@ -86,14 +110,14 @@ return [
                 ],
             ],
         ],
-        'response' => [
-            'label' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:tx_surfcampbase_api_endpoint.response',
-            'description' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:tx_surfcampbase_api_endpoint.response.description',
-            'config' => [
-                'type' => 'user',
-                'renderType' => 'apiResponseField',
-            ],
-        ],
+//        'response' => [
+//            'label' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:tx_surfcampbase_api_endpoint.response',
+//            'description' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:tx_surfcampbase_api_endpoint.response.description',
+//            'config' => [
+//                'type' => 'user',
+//                'renderType' => 'apiResponseField',
+//            ],
+//        ],
         'mappings' => [
             'label' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:fieldmapping.title',
             'config' => [

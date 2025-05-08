@@ -7,12 +7,17 @@ services:
   _instanceof:
     TYPO3Incubator\SurfcampBase\Http\ContentTypeHandlers\HandlerInterface:
       tags: [ 'handler' ]
+    TYPO3Incubator\SurfcampBase\Http\Client\ClientInterface:
+      tags: [ 'client' ]
 
   TYPO3Incubator\SurfcampBase\:
     resource: '../Classes/*'
 
   TYPO3Incubator\SurfcampBase\Http\ContentTypeHandlers\ResponseHandler:
     arguments: [ !tagged_iterator handler ]
+
+  TYPO3Incubator\SurfcampBase\Http\Client\Client:
+    arguments: [ !tagged_iterator client ]
 
   querybuilder.tx_surfcampbase_api_endpoint:
     class: 'TYPO3\CMS\Core\Database\Query\QueryBuilder'

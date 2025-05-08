@@ -36,6 +36,12 @@
             <trans-unit id="tx_surfcampbase_api_endpoint.name">
                 <source>Name</source>
             </trans-unit>
+            <trans-unit id="tx_surfcampbase_api_endpoint.body">
+                <source>Request Body</source>
+            </trans-unit>
+            <trans-unit id="tx_surfcampbase_api_endpoint.type">
+                <source>Type</source>
+            </trans-unit>
             <trans-unit id="tx_surfcampbase_api_endpoint.path">
                 <source>Path</source>
             </trans-unit>
@@ -76,8 +82,14 @@
             <trans-unit id="fieldmapping.source.title" resname="fieldmapping.source.title">
                 <source>Source</source>
             </trans-unit>
+            <trans-unit id="fieldmapping.source.description" resname="fieldmapping.source.description">
+                <source>Path to the entry in the response (point-separated): data.Page.media.title.english</source>
+            </trans-unit>
             <trans-unit id="fieldmapping.target.title" resname="fieldmapping.target.title">
                 <source>Target</source>
+            </trans-unit>
+            <trans-unit id="fieldmapping.target.description" resname="fieldmapping.target.description">
+                <source>Name of the Fluid variable</source>
             </trans-unit>
             <trans-unit id="fieldmapping.target_datatype.title" resname="fieldmapping.target_datatype.title">
                 <source>Target datatype</source>
