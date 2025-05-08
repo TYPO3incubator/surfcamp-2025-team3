@@ -104,6 +104,7 @@ return [
         ],
         'target_datatype' => [
             'label' => $LLL . ':fieldmapping.target_datatype.title',
+            'description' => $LLL . ':fieldmapping.target_datatype.description',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',

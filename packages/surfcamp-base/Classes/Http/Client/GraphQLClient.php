@@ -8,6 +8,8 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
 use TYPO3\CMS\Core\Domain\RecordInterface;
 use TYPO3\CMS\Core\Http\RequestFactory;
+use TYPO3Incubator\SurfcampBase\Http\ContentTypeHandlers\ResponseHandler;
+use TYPO3Incubator\SurfcampBase\Service\CacheService;
 
 readonly class GraphQLClient extends AbstractClient implements ClientInterface
 {
@@ -16,17 +18,27 @@ readonly class GraphQLClient extends AbstractClient implements ClientInterface
     public function __construct(
         LoggerInterface $logger,
         private RequestFactory $requestFactory,
+        private CacheService $cacheService,
+        private ResponseHandler $responseHandler
     ) {
         parent::__construct($logger);
     }
 
-    public function fetch(RecordInterface $endpoint): ResponseInterface
+    public function fetch(RecordInterface $endpoint, int $cacheLifetime): array
     {
         $url = $this->getUrl($endpoint);
+        $body = $endpoint->get('body');
 
-        $response = $this->requestFactory->request($url, 'POST', ['json' => ['query' => $endpoint->get('body')]]);
+        $identifier = sha1($url) . sha1(json_encode($body));
+        $response = $this->cacheService->get($identifier);
+        if ($response === false) {
+            $responseObject = $this->requestFactory->request($url, 'POST', ['json' => ['query' => $body]]);
+            $this->checkResponse($responseObject);
 
-        $this->checkResponse($response);
+            $response = $this->responseHandler->resolveResponseBody($responseObject, $endpoint);
+
+            $this->cacheService->set($identifier, $response, $cacheLifetime);
+        }
 
         return $response;
     }

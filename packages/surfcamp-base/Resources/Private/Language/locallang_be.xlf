@@ -54,6 +54,9 @@
             <trans-unit id="tx_surfcampbase_api_endpoint.response.description">
                 <source>This field shows an examples api response of the given endpoint.</source>
             </trans-unit>
+            <trans-unit id="tx_surfcampbase_api_endpoint.cache_lifetime">
+                <source>Cache Lifetime</source>
+            </trans-unit>
 
             <!-- api_base record -->
             <trans-unit id="tx_surfcampbase_api_base">
@@ -111,6 +114,9 @@
             </trans-unit>
             <trans-unit id="fieldmapping.target_datatype.title" resname="fieldmapping.target_datatype.title">
                 <source>Target datatype</source>
+            </trans-unit>
+            <trans-unit id="fieldmapping.target_datatype.description" resname="fieldmapping.target_datatype.description">
+                <source>Datatype of the Fluid variable</source>
             </trans-unit>
             <trans-unit id="fieldmapping.target_datatype.items.string" resname="fieldmapping.target_datatype.items.string">
                 <source>String</source>

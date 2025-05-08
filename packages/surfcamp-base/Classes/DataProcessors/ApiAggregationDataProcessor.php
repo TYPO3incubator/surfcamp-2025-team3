@@ -16,7 +16,6 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 use TYPO3Incubator\SurfcampBase\Factory\EndPointFactory;
 use TYPO3Incubator\SurfcampBase\Http\Client\Client;
-use TYPO3Incubator\SurfcampBase\Http\ContentTypeHandlers\ResponseHandler;
 use TYPO3Incubator\SurfcampBase\Service\FieldMappingService;
 
 #[Autoconfigure(public: true)]
@@ -25,7 +24,6 @@ readonly class ApiAggregationDataProcessor implements DataProcessorInterface
     public function __construct(
         private LoggerInterface $logger,
         private EndPointFactory $endPointFactory,
-        private ResponseHandler $responseHandler,
         private FieldMappingService $fieldMappingService,
         private Client $client
     ) {
@@ -41,9 +39,11 @@ readonly class ApiAggregationDataProcessor implements DataProcessorInterface
 
         try {
             $endpoint = $this->endPointFactory->create($this->getEndpointUid($cObj));
-            $response = $this->client->fetch($endpoint);
-            $responseBodyAsArray = $this->responseHandler->resolveResponseBody($response, $endpoint);
-            $processedData[$targetVariableName] = $this->fieldMappingService->map($responseBodyAsArray, $endpoint);
+
+            $cacheLifetime = $this->getCacheLifetime($endpoint, $cObj);
+            $responseBody = $this->client->fetch($endpoint, $cacheLifetime);
+
+            $processedData[$targetVariableName] = $this->fieldMappingService->map($responseBody, $endpoint);
         } catch (Throwable $throwable) {
             $this->logger->error($throwable->getMessage());
         }
@@ -64,5 +64,20 @@ readonly class ApiAggregationDataProcessor implements DataProcessorInterface
     protected function fetchApiData(RecordInterface $endpoint): ResponseInterface
     {
         return $this->client->fetch($endpoint);
+    }
+
+    protected function getSettings(ContentObjectRenderer $cObj)
+    {
+        return $cObj->getRequest()->getAttribute('site')->getSettings()->getAll();
+    }
+
+    protected function getCacheLifetime(RecordInterface $endpoint, ContentObjectRenderer $cObj): mixed
+    {
+        $cacheLifetime = $endpoint->get('cache_lifetime');
+        if ($cacheLifetime === null || $cacheLifetime === 0) {
+            $settings = $this->getSettings($cObj);
+            $cacheLifetime = $settings['cache']['response']['lifetime'];
+        }
+        return $cacheLifetime;
     }
 }

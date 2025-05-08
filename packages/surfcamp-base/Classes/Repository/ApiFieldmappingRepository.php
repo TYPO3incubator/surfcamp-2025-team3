@@ -76,6 +76,7 @@ class ApiFieldmappingRepository
                         'source' => '',
                         'target' => $target,
                         'target_datatype' => $datatype,
+                        'is_preset' => 1
                     ])
                     ->executeStatement();
             } else {

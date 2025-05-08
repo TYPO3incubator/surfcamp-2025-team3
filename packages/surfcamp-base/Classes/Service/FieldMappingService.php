@@ -6,6 +6,8 @@ namespace TYPO3Incubator\SurfcampBase\Service;
 
 use TYPO3\CMS\Core\Domain\RecordInterface;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 
 class FieldMappingService
 {
@@ -43,6 +45,9 @@ class FieldMappingService
         $currentData = $data;
         $keyParts = explode(self::NESTED_KEY_SEPARATOR, $sourceKey);
 
+
+        $foo = ObjectAccess::getPropertyPath($data, 'response.players.name');
+
         foreach ($keyParts as $level => $keyPart) {
             if (array_key_exists($keyPart, $currentData)) {
                 $currentData = $currentData[$keyPart];
@@ -54,7 +59,6 @@ class FieldMappingService
                     $dataType,
                     $mappedData
                 );
-                break;
             }
         }
     }
