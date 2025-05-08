@@ -26,7 +26,7 @@ class FieldMappingService
         $mappedData = [];
 
         foreach ($mappings as $mapping) {
-            $sourceKey = $mapping->get('source') ?? '';
+            $sourceKey = $mapping->get('source')[0] ?? '';
             $targetKey = $mapping->get('target') ?? '';
             $dataType = $mapping->get('target_datatype');
 

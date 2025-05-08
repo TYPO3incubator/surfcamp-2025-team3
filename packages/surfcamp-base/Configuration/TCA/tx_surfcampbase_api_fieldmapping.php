@@ -56,19 +56,10 @@ return [
             'description' => $LLL . ':fieldmapping.source.description',
             'config' => [
                 'type' => 'select',
-                'renderType' => 'selectTree',
-                'foreign_table' => 'tx_surfcampbase_api_endpoint',
-                'size' => 20,
+                'renderType' => 'selectMultipleSideBySide',
                 'maxitems' => 1,
                 'items' => [
                     ['label' => 'Default value', 'value' => 'default'],
-                ],
-                'treeConfig' => [
-                    'parentField' => 'pid',
-                    'appearance' => [
-                        'expandAll' => true,
-                        'showHeader' => true,
-                    ],
                 ],
                 'itemsProcFunc' => TYPO3Incubator\SurfcampBase\Backend\UserFunctions\SelectAPIResponseKeys::class . '->selectAPIResponseKeys',
                 'behaviour' => [

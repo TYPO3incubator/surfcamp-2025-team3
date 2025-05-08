@@ -4,10 +4,6 @@ declare(strict_types=1);
 
 namespace TYPO3Incubator\SurfcampBase\DataProcessors;
 
-use GuzzleHttp\Exception\GuzzleException;
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
-use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 use Throwable;
@@ -54,16 +50,6 @@ readonly class ApiAggregationDataProcessor implements DataProcessorInterface
     protected function getEndpointUid(ContentObjectRenderer $cObj): int
     {
         return (int)($cObj->data['api_endpoint'] ?? 0);
-    }
-
-    /**
-     * @throws GuzzleException
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
-     */
-    protected function fetchApiData(RecordInterface $endpoint): ResponseInterface
-    {
-        return $this->client->fetch($endpoint);
     }
 
     protected function getSettings(ContentObjectRenderer $cObj)
