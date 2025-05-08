@@ -18,6 +18,7 @@ use TYPO3Incubator\SurfcampBase\Factory\ApiFactory;
 use TYPO3Incubator\SurfcampBase\Factory\EndPointFactory;
 use TYPO3Incubator\SurfcampBase\Http\Client\ApiClient;
 use TYPO3Incubator\SurfcampBase\Http\ContentTypeHandlers\ResponseHandler;
+use TYPO3Incubator\SurfcampBase\Repository\ApiEndpointRepository;
 
 class ApiResponseFieldElement extends CodeEditorElement
 {
@@ -26,6 +27,7 @@ class ApiResponseFieldElement extends CodeEditorElement
         private readonly ResponseHandler $responseHandler,
         private readonly EndPointFactory $endPointFactory,
         private readonly ApiFactory $apiFactory,
+        private readonly ApiEndpointRepository $apiEndpointRepository,
     ) {
     }
 
@@ -40,8 +42,9 @@ class ApiResponseFieldElement extends CodeEditorElement
         try {
             $endpoint = $this->endPointFactory->create($uid);
             $apiResponse = $this->getApiResponse($endpoint);
-            $parsedResponseBody = $this->getResponseBody($apiResponse, $endpoint);
-            $this->data['parameterArray']['itemFormElValue'] = json_encode($parsedResponseBody, JSON_PRETTY_PRINT);
+            $parsedResponseBody = $this->getEncodedResponseBody($apiResponse, $endpoint);
+            $this->apiEndpointRepository->updateResponse($uid, $parsedResponseBody);
+            $this->data['parameterArray']['itemFormElValue'] = $parsedResponseBody;
         } catch (Throwable $throwable) {
             $this->logger->error($throwable->getMessage());
             $this->displayError();
@@ -64,9 +67,10 @@ class ApiResponseFieldElement extends CodeEditorElement
         );
     }
 
-    protected function getResponseBody(ResponseInterface $response, RecordInterface $endpoint): array
+    protected function getEncodedResponseBody(ResponseInterface $response, RecordInterface $endpoint): string
     {
-        return $this->responseHandler->resolveResponseBody($response, $endpoint);
+        $resolvedBody = $this->responseHandler->resolveResponseBody($response, $endpoint);
+        return json_encode($resolvedBody, JSON_PRETTY_PRINT);
     }
 
     protected function displayError(): void

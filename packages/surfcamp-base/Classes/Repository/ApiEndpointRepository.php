@@ -39,4 +39,20 @@ class ApiEndpointRepository
             throw new NotFoundException('Endpoint not found', 1746373658);
         }
     }
+
+    public function updateResponse(int $uid, string $responseBody): void
+    {
+        $queryBuilder = clone $this->queryBuilder;
+        $queryBuilder->update('tx_surfcampbase_api_endpoint')
+            ->set(
+                'response',
+                $responseBody
+            )
+            ->where(
+                $queryBuilder->expr()->eq(
+                    'uid',
+                    $queryBuilder->createNamedParameter($uid, ParameterType::INTEGER)
+                )
+            )->executeStatement();
+    }
 }
