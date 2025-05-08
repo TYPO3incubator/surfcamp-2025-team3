@@ -60,6 +60,10 @@ return [
                 'foreign_table' => 'tx_surfcampbase_api_endpoint',
                 'size' => 20,
                 'maxitems' => 1,
+                'items' => [
+                    ['label' => 'foo', 'value' => 1],
+                    ['label' => 'bar', 'value' => 'bar'],
+                ],
                 'treeConfig' => [
                     'parentField' => 'pid',
                     'appearance' => [
