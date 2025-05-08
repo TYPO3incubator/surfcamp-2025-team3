@@ -61,8 +61,7 @@ return [
                 'size' => 20,
                 'maxitems' => 1,
                 'items' => [
-                    ['label' => 'foo', 'value' => 1],
-                    ['label' => 'bar', 'value' => 'bar'],
+                    ['label' => 'Default value', 'value' => 'default'],
                 ],
                 'treeConfig' => [
                     'parentField' => 'pid',

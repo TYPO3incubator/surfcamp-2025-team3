@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace TYPO3Incubator\SurfcampBase\Backend\UserFunctions;
 
+use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
+use Throwable;
 use TYPO3Incubator\SurfcampBase\Factory\EndPointFactory;
 use TYPO3Incubator\SurfcampBase\Repository\ApiMappingRepository;
 
@@ -13,13 +15,15 @@ readonly class SelectAPIResponseKeys
 {
     public function __construct(
         private EndPointFactory $endPointFactory,
-        private ApiMappingRepository $apiMappingRepository
+        private ApiMappingRepository $apiMappingRepository,
+        private LoggerInterface $logger,
     ) {
     }
 
     public function selectAPIResponseKeys(&$params): void
     {
         try {
+            $params['items'] = [];
             $mapping = $this->apiMappingRepository->findByUid($params['row']['uid']);
             $endpoint = $this->endPointFactory->create($mapping['api_endpoint']);
             $data = json_decode($endpoint->get('response'), true, 512, JSON_THROW_ON_ERROR);
@@ -27,49 +31,39 @@ readonly class SelectAPIResponseKeys
             if (is_array($data)) {
                 $flattenedData = self::flatten($data);
                 foreach (array_keys($flattenedData) as $key) {
-                    $params['items'][] = ['label' => $key, 'value' => $key];
+                    $params['items'][] = [
+                        'label' => (string)$key,
+                        'value' => $key
+                    ];
                 }
             }
-        } catch (\Exception $e) {
-            $params['items'][] = ['label' => 'item 1 from Exception', 'value' => 'val1'];
+        } catch (Throwable $throwable) {
+            $this->logger->error($throwable->getMessage());
         }
     }
 
-    private function flatten(array $array, string $prefix = '', bool $isChild = false): array
+    private function flatten(array $array, string $prefix = ''): array
     {
         $flatArray = [];
+
         foreach ($array as $key => $value) {
-            $key = rtrim((string)$key, '.');
-            $newPrefix = $prefix . $key . '.';
+            $newPrefix = $prefix . '.' . $key;
 
-            if ($isChild === true) {
+            if ($prefix === '') {
+                $newPrefix = $key;
+            }
+
+            if (is_numeric($key) === true) {
                 $newPrefix = $prefix;
-                $isChild = false;
             }
 
-            if (is_array($value) === false) {
-                $flatArray[$prefix . $key] = $value;
-                continue;
-            }
+            $flatArray[$newPrefix] = $value;
 
-            if (is_array($value) === true && self::hasChildren($value) === true) {
-                $isChild = true;
+            if (is_array($value) === true) {
+                $flatArray = array_merge($flatArray, self::flatten($value, $newPrefix));
             }
-
-            $flatArray = array_merge($flatArray, self::flatten($value, $newPrefix, $isChild));
         }
 
         return $flatArray;
-    }
-
-    private function hasChildren(array $value): bool
-    {
-        foreach ($value as $childValue) {
-            if (is_array($childValue) === true) {
-                return true;
-            }
-        }
-
-        return false;
     }
 }
