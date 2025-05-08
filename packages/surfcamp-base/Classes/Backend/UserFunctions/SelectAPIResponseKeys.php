@@ -29,7 +29,7 @@ class SelectAPIResponseKeys
             $data = json_decode($endpoint->get('response'), true, 512, JSON_THROW_ON_ERROR);
 
             if (is_array($data)) {
-                $flattenedData = ArrayUtility::flatten($data);
+                $flattenedData = self::flatten($data);
                 foreach (array_keys($flattenedData) as $key) {
                     $params['items'][] = ['label' => $key, 'value' => $key];
                 }
@@ -39,44 +39,41 @@ class SelectAPIResponseKeys
         }
     }
 
-    private function processNestedMapping(
-        array $data,
-        string $sourceKey
-    ): void {
-        $currentData = $data;
-        $keyParts = explode(FieldMappingService::NESTED_KEY_SEPARATOR, $sourceKey);
+    private function flatten(array $array, string $prefix = '', bool $isChild = false): array
+    {
+        $flatArray = [];
+        foreach ($array as $key => $value) {
+            $key = rtrim((string)$key, '.');
+            $newPrefix = $prefix . $key . '.';
 
-        foreach ($keyParts as $level => $keyPart) {
-            if (array_key_exists($keyPart, $data)) {
-                $currentData = $currentData[$keyPart];
-            } elseif (is_array($currentData)) {
-                $this->processArrayItems(
-                    $currentData,
-                    implode(FieldMappingService::NESTED_KEY_SEPARATOR, array_slice($keyParts, $level)),
-                    $targetKey,
-                    $dataType,
-                    $mappedData
-                );
-                break;
+            if ($isChild === true) {
+                $newPrefix = $prefix;
+                $isChild = false;
             }
+
+            if (is_array($value) === false) {
+                $flatArray[$prefix . $key] = $value;
+                continue;
+            }
+
+            if (is_array($value) === true && self::hasChildren($value) === true) {
+                $isChild = true;
+            }
+
+            $flatArray = array_merge($flatArray, self::flatten($value, $newPrefix, $isChild));
         }
+
+        return $flatArray;
     }
 
-    private function processArrayItems(
-        array $items,
-        string $remainingKey,
-        string $targetKey,
-        string $dataType,
-        array &$mappedData
-    ): void {
-        foreach ($items as $key => $item) {
-            $flattenedItem = ArrayUtility::flatten($item);
-
-            if (array_key_exists($remainingKey, $flattenedItem)) {
-                $mappedData[$key][$targetKey] = $this->convertValueType($flattenedItem[$remainingKey], $dataType);
-            } elseif (array_key_exists($remainingKey, $item)) {
-                $mappedData[$key][$targetKey] = $this->convertValueType($item[$remainingKey], $dataType);
+    private function hasChildren(array $value): bool
+    {
+        foreach ($value as $childValue) {
+            if (is_array($childValue) === true) {
+                return true;
             }
         }
+
+        return false;
     }
 }
