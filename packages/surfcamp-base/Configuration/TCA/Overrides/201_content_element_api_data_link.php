@@ -15,10 +15,8 @@ ExtensionManagementUtility::addTcaSelectItem(
         'label' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:content_element.api_data_link.label',
         'value' => $key,
         'description' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:content_element.api_data_link.description',
-        'group' => 'default',
+        'group' => 'api',
     ],
-    'textmedia',
-    'after',
 );
 
 // Configure the default backend fields for the content element

@@ -27,6 +27,14 @@ readonly abstract class AbstractClient
 
     protected function getUrl(RecordInterface $endpoint): string
     {
-        return $endpoint->get('base')->get('base_url')->toArray()['url'] . '/' . $endpoint->get('path');
+        $baseUrl = $endpoint->get('base')->get('base_url')->toArray()['url'];
+        $path = $endpoint->get('path');
+
+        if (str_starts_with($path, '/')) {
+            return $baseUrl . $path;
+        }
+
+        return $baseUrl . '/' . $path;
+
     }
 }

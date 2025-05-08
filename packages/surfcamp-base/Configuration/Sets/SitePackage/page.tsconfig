@@ -1,4 +1,5 @@
 @import './PageTsConfig/BackendLayouts/'
+@import './PageTsConfig/TCEFORM.tsconfig'
 
 RTE {
     default {

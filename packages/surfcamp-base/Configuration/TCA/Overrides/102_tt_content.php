@@ -26,3 +26,11 @@ ExtensionManagementUtility::addTCAcolumns(
         ],
     ]
 );
+
+ExtensionManagementUtility::addTcaSelectItemGroup(
+    'tt_content',
+    'CType',
+    'api',
+    'API',
+    'after:fcbigfoot'
+);
