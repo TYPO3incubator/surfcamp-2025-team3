@@ -13,7 +13,7 @@ use TYPO3\CMS\Backend\Form\Element\CodeEditorElement;
 use TYPO3\CMS\Core\Domain\RecordInterface;
 use TYPO3Incubator\SurfcampBase\Factory\ApiFactory;
 use TYPO3Incubator\SurfcampBase\Factory\EndPointFactory;
-use TYPO3Incubator\SurfcampBase\Http\Api\ApiClient;
+use TYPO3Incubator\SurfcampBase\Http\Client\ApiClient;
 use TYPO3Incubator\SurfcampBase\Http\ContentTypeHandlers\ResponseHandler;
 
 class ApiResponseFieldElement extends CodeEditorElement

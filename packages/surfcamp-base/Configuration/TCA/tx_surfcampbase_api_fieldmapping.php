@@ -53,6 +53,7 @@ return [
         ],
         'source' => [
             'label' => $LLL . ':fieldmapping.source.title',
+            'description' => $LLL . ':fieldmapping.source.description',
             'config' => [
                 'type' => 'input',
                 'behaviour' => [
@@ -62,6 +63,7 @@ return [
         ],
         'target' => [
             'label' => $LLL . ':fieldmapping.target.title',
+            'description' => $LLL . ':fieldmapping.target.description',
             'config' => [
                 'type' => 'input',
                 'behaviour' => [
