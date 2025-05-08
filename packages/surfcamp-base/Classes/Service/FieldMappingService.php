@@ -11,7 +11,7 @@ use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 
 class FieldMappingService
 {
-    private const string NESTED_KEY_SEPARATOR = '.';
+    public const string NESTED_KEY_SEPARATOR = '.';
 
     public function map(array $data, RecordInterface $endpoint): array
     {
