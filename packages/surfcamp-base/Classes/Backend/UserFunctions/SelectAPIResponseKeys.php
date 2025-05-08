@@ -1,19 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TYPO3Incubator\SurfcampBase\Backend\UserFunctions;
-use Doctrine\DBAL\Query\QueryBuilder;
-use ScssPhp\ScssPhp\Formatter\Debug;
+
 use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use TYPO3\CMS\Core\Utility\ArrayUtility;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3Incubator\SurfcampBase\Factory\EndPointFactory;
-use TYPO3Incubator\SurfcampBase\Repository\ApiEndpointRepository;
 use TYPO3Incubator\SurfcampBase\Repository\ApiMappingRepository;
-use TYPO3Incubator\SurfcampBase\Service\FieldMappingService;
 
 #[Autoconfigure(public: true)]
-class SelectAPIResponseKeys
+readonly class SelectAPIResponseKeys
 {
     public function __construct(
         private EndPointFactory $endPointFactory,
@@ -21,7 +17,7 @@ class SelectAPIResponseKeys
     ) {
     }
 
-    public function selectAPIResponseKeys (&$params): void
+    public function selectAPIResponseKeys(&$params): void
     {
         try {
             $mapping = $this->apiMappingRepository->findByUid($params['row']['uid']);
