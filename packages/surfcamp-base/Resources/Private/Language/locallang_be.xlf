@@ -24,6 +24,8 @@
             <trans-unit id="field.template">
                 <source>Template</source>
             </trans-unit>
+
+            <!-- api_endpoint record -->
             <trans-unit id="field.api_endpoint">
                 <source>Api Endpoint</source>
             </trans-unit>
@@ -42,6 +44,9 @@
             <trans-unit id="tx_surfcampbase_api_endpoint.type">
                 <source>Type</source>
             </trans-unit>
+            <trans-unit id="tx_surfcampbase_api_endpoint.type.description">
+                <source>The datatype of the API response, e.g. JSON or GraphQL</source>
+            </trans-unit>
             <trans-unit id="tx_surfcampbase_api_endpoint.path">
                 <source>Path</source>
             </trans-unit>
@@ -51,8 +56,8 @@
             <trans-unit id="tx_surfcampbase_api_endpoint.response">
                 <source>Response</source>
             </trans-unit>
-            <trans-unit id="tx_surfcampbase_api_endpoint.response.description">
-                <source>This field shows an examples api response of the given endpoint.</source>
+            <trans-unit id="tx_surfcampbase_api_endpoint.body.description">
+                <source>The API response is fetched once and displayed here to give an overview of the available data. Changes made to this field are not saved permanently, but overwritten the next time the API response is fetched.</source>
             </trans-unit>
 
             <!-- api_base record -->
@@ -65,6 +70,9 @@
             <trans-unit id="tx_surfcampbase_api_base.base_url">
                 <source>API base url</source>
             </trans-unit>
+            <trans-unit id="tx_surfcampbase_api_base.base_url.description">
+                <source>The base URL of the API including protocol (https://) and domain, but no subdirectories. Example: https://api.example.com. This URL serves as the foundation for all API requests and will be combined with specific endpoints.</source>
+            </trans-unit>
             <trans-unit id="tx_surfcampbase_api_base.additional_headers">
                 <source>Additional headers</source>
             </trans-unit>
@@ -73,6 +81,9 @@
             </trans-unit>
             <trans-unit id="tx_surfcampbase_api_base.endpoints">
                 <source>API endpoints</source>
+            </trans-unit>
+            <trans-unit id="tx_surfcampbase_api_base.endpoints.description">
+                <source>For each base, several endpoints with different queries and data mappings can be defined</source>
             </trans-unit>
 
             <!-- api_fieldmapping -->
