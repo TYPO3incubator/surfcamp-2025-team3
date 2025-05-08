@@ -4,19 +4,16 @@ declare(strict_types=1);
 
 namespace TYPO3Incubator\SurfcampBase\Hooks;
 
-use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 use Throwable;
 use TYPO3\CMS\Core\DataHandling\DataHandler;
-use TYPO3\CMS\Core\Domain\RecordInterface;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessageService;
 use TYPO3\CMS\Core\Type\ContextualFeedbackSeverity;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Incubator\SurfcampBase\Factory\EndPointFactory;
 use TYPO3Incubator\SurfcampBase\Http\Client\ApiClient;
-use TYPO3Incubator\SurfcampBase\Http\ContentTypeHandlers\ResponseHandler;
 use TYPO3Incubator\SurfcampBase\Repository\ApiEndpointRepository;
 
 #[Autoconfigure(public: true)]
@@ -27,7 +24,6 @@ class DataHandlerHook
         private readonly EndPointFactory $endPointFactory,
         private readonly ApiClient $apiClient,
         private readonly ApiEndpointRepository $apiEndpointRepository,
-        private readonly ResponseHandler $responseHandler,
     ) {
     }
 
@@ -48,9 +44,9 @@ class DataHandlerHook
         try {
             $uid = $this->getEndpointUid($id, $dataHandler);
             $endpoint = $this->endPointFactory->create($uid);
-            $apiResponse = $this->apiClient->fetch($endpoint);
-            $parsedResponseBody = $this->getEncodedResponseBody($apiResponse, $endpoint);
-            $this->apiEndpointRepository->updateResponse($uid, $parsedResponseBody);
+            // @todo get proper cache lifetime from endpoint settings
+            $apiResponse = $this->apiClient->fetch($endpoint, 3600);
+            $this->apiEndpointRepository->updateResponse($uid, json_encode($apiResponse, JSON_PRETTY_PRINT));;
         } catch (Throwable $throwable) {
             $this->logger->error($throwable->getMessage());
             $this->displayError();
@@ -69,12 +65,6 @@ class DataHandlerHook
         $flashMessageService = GeneralUtility::makeInstance(FlashMessageService::class);
         $messageQueue = $flashMessageService->getMessageQueueByIdentifier();
         $messageQueue->addMessage($message);
-    }
-
-    protected function getEncodedResponseBody(ResponseInterface $response, RecordInterface $endpoint): string
-    {
-        $resolvedBody = $this->responseHandler->resolveResponseBody($response, $endpoint);
-        return json_encode($resolvedBody, JSON_PRETTY_PRINT);
     }
 
     protected function getEndpointUid(string $uid, DataHandler $dataHandler): int
