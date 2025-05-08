@@ -70,9 +70,9 @@ class FieldMappingService
             $flattenedItem = ArrayUtility::flatten($item);
 
             if (array_key_exists($remainingKey, $flattenedItem)) {
-                $mappedData[$targetKey][$key] = $this->convertValueType($flattenedItem[$remainingKey], $dataType);
+                $mappedData[$key][$targetKey] = $this->convertValueType($flattenedItem[$remainingKey], $dataType);
             } elseif (array_key_exists($remainingKey, $item)) {
-                $mappedData[$targetKey][$key] = $this->convertValueType($item[$remainingKey], $dataType);
+                $mappedData[$key][$targetKey] = $this->convertValueType($item[$remainingKey], $dataType);
             }
         }
     }
