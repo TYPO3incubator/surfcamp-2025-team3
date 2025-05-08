@@ -1,0 +1,83 @@
+<html data-namespace-typo3-fluid="true">
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+    }
+
+    .gallery-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .gallery-title {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .gallery-item {
+        display: flex;
+        flex-direction: column;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover {
+        transform: translateY(-5px);
+    }
+
+    .gallery-item img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        display: block;
+    }
+
+    .gallery-item .title {
+        padding: 15px;
+        text-align: center;
+        background-color: #f8f8f8;
+    }
+
+    @media (max-width: 768px) {
+        .gallery {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 480px) {
+        .gallery {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+<div class="gallery-container">
+    <h1 class="gallery-title">Gallery</h1>
+    <div class="gallery">
+        <f:for as="item" each="{apiValues}">
+            <f:variable name="title" value="{f:if(condition: '{item.nameEnglish} != \'\'', then: '{item.nameEnglish}', else: '{item.nameNative}')}"></f:variable>
+            <f:variable name="image" value="{f:if(condition: '{item.image} != \'\'', then: '{item.image}', else: 'https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ=')}"></f:variable>
+            <div class="gallery-item">
+                <img
+                        src="{image}"
+                        alt="Cover: {title}">
+                <div class="title">{title}</div>
+            </div>
+        </f:for>
+    </div>
+</div>
+</html>
