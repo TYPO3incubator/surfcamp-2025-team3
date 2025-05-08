@@ -27,6 +27,7 @@ return [
                 base,
                 name,
                 path,
+                cache_lifetime,
                 type,
                 body,
 //                response,
@@ -97,6 +98,12 @@ return [
                 'renderType' => 'codeEditor',
                 'cols' => 50,
                 'rows' => 10,
+            ],
+        ],
+        'cache_lifetime' => [
+            'label' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:tx_surfcampbase_api_endpoint.cache_lifetime',
+            'config' => [
+                'type' => 'number',
             ],
         ],
         'path' => [

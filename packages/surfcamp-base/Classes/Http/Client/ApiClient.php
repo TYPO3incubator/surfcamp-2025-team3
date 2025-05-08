@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace TYPO3Incubator\SurfcampBase\Http\Client;
 
-use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
 use TYPO3\CMS\Core\Domain\RecordInterface;
 use TYPO3\CMS\Core\Http\RequestFactory;
+use TYPO3Incubator\SurfcampBase\Http\ContentTypeHandlers\ResponseHandler;
+use TYPO3Incubator\SurfcampBase\Service\CacheService;
 
 readonly class ApiClient extends AbstractClient implements ClientInterface
 {
@@ -16,18 +17,27 @@ readonly class ApiClient extends AbstractClient implements ClientInterface
     public function __construct(
         LoggerInterface $logger,
         private RequestFactory $requestFactory,
+        private CacheService $cacheService,
+        private ResponseHandler $responseHandler
     ) {
         parent::__construct($logger);
     }
 
-    public function fetch(RecordInterface $endpoint): ResponseInterface
+    public function fetch(RecordInterface $endpoint, int $cacheLifetime): array
     {
         $url = $this->getUrl($endpoint);
         $additionalHeaders = $endpoint->get('base')->get('additional_headers');
 
-        $response = $this->requestFactory->request($url, 'GET', ['headers' => $additionalHeaders]);
+        $identifier = sha1($url) . sha1(json_encode($additionalHeaders));
+        $response = $this->cacheService->get($identifier);
+        if ($response === false) {
+            $responseObject = $this->requestFactory->request($url, 'GET', ['headers' => $additionalHeaders]);
+            $this->checkResponse($responseObject);
 
-        $this->checkResponse($response);
+            $response = $this->responseHandler->resolveResponseBody($responseObject, $endpoint);
+
+            $this->cacheService->set($identifier, $response, $cacheLifetime);
+        }
 
         return $response;
     }
