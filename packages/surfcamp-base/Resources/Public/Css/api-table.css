@@ -1,0 +1,25 @@
+.api-table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.api-table th,
+.api-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.api-table th {
+    background-color: #f4f4f4;
+    text-align: left;
+}
+
+.api-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.api-table tr:hover {
+    background-color: #eaeaea;
+}

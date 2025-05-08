@@ -16,6 +16,7 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 use TYPO3Incubator\SurfcampBase\Factory\EndPointFactory;
 use TYPO3Incubator\SurfcampBase\Http\Client\Client;
+use TYPO3Incubator\SurfcampBase\Http\ContentTypeHandlers\ResponseHandler;
 use TYPO3Incubator\SurfcampBase\Service\FieldMappingService;
 
 #[Autoconfigure(public: true)]
@@ -24,6 +25,7 @@ readonly class ApiAggregationDataProcessor implements DataProcessorInterface
     public function __construct(
         private LoggerInterface $logger,
         private EndPointFactory $endPointFactory,
+        private ResponseHandler $responseHandler,
         private FieldMappingService $fieldMappingService,
         private Client $client
     ) {

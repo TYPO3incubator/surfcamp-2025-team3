@@ -1,0 +1,7 @@
+tt_content {
+    api_table =< lib.contentElement
+    api_table {
+        templateName = ApiTable
+        dataProcessing.10 = TYPO3Incubator\SurfcampBase\DataProcessors\ApiAggregationDataProcessor
+    }
+}

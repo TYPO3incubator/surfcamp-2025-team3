@@ -21,6 +21,15 @@
             <trans-unit id="content_element.api_data_link.description">
                 <source>This is a content element for linking different APIs.</source>
             </trans-unit>
+            <trans-unit id="content_element.api_table.label">
+                <source>API Table Template</source>
+            </trans-unit>
+            <trans-unit id="content_element.api_table.description">
+                <source>This is a content element for displaying the APIs data as a table.</source>
+            </trans-unit>
+            <trans-unit id="content_element.api_templates">
+                <source>API Templates</source>
+            </trans-unit>
             <trans-unit id="field.template">
                 <source>Template</source>
             </trans-unit>
