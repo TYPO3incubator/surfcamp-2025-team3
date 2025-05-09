@@ -22,6 +22,8 @@ ExtensionManagementUtility::addTcaSelectItem(
 // Configure the default backend fields for the content element
 $GLOBALS['TCA']['tt_content']['types'][$key] = [
     'showitem' => '
-           api_endpoint,
+            api_base,
+            api_endpoint,
+            target_field_mapping,
         ',
 ];

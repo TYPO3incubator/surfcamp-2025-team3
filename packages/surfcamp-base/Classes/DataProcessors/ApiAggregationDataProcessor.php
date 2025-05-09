@@ -12,6 +12,7 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 use Throwable;
 use TYPO3\CMS\Core\Domain\RecordInterface;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 use TYPO3Incubator\SurfcampBase\Factory\EndPointFactory;
@@ -44,9 +45,9 @@ readonly class ApiAggregationDataProcessor implements DataProcessorInterface
 
             $cacheLifetime = $this->getCacheLifetime($endpoint, $cObj);
             $responseBody = $this->client->fetch($endpoint, $cacheLifetime);
-
             $processedData[$targetVariableName] = $this->fieldMappingService->map($responseBody, $endpoint);
         } catch (Throwable $throwable) {
+            DebuggerUtility::var_dump($throwable);
             $this->logger->error($throwable->getMessage());
         }
 

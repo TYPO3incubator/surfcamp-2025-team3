@@ -27,6 +27,14 @@ services:
     arguments:
       - 'tx_surfcampbase_api_endpoint'
 
+  querybuilder.tx_surfcampbase_api_fieldmapping:
+    class: 'TYPO3\CMS\Core\Database\Query\QueryBuilder'
+    factory:
+      - '@TYPO3\CMS\Core\Database\ConnectionPool'
+      - 'getQueryBuilderForTable'
+    arguments:
+      - 'tx_surfcampbase_api_fieldmapping'
+
   TYPO3Incubator\SurfcampBase\Repository\ApiEndpointRepository:
     public: true
     arguments:
@@ -40,3 +48,8 @@ services:
   TYPO3Incubator\SurfcampBase\Service\CacheService:
     arguments:
       $cache: '@cache.surfcamp_base_api_response'
+
+  TYPO3Incubator\SurfcampBase\Repository\ApiFieldMappingRepository:
+    public: true
+    arguments:
+      $queryBuilder: '@querybuilder.tx_surfcampbase_api_fieldmapping'

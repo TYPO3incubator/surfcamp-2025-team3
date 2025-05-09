@@ -1,23 +1,21 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
-    <f:layout name="Default" />
+<html>
 
-    <f:section name="Main">
-        <f:asset.css identifier="api-table-css" href="EXT:surfcamp_base/Resources/Public/Css/api-table.css" />
+<!--    <f:asset.css identifier="api-table-css" href="EXT:surfcamp_base/Resources/Public/Css/api-table.css" />-->
 
-        <h2>Data available to the content element test:</h2>
-        <f:debug>{_all}</f:debug>
+    <h2>Data available to the content element test:</h2>
+    <f:debug>{_all}</f:debug>
 
-<!--        <f:if condition="{dataRows}">-->
+<!--        <f:if condition="{apiValues}">-->
 <!--            <table class="api-table">-->
 <!--                <thead>-->
 <!--                <tr>-->
-<!--                    <f:for each="{dataRows.0}" as="value" key="columnName">-->
+<!--                    <f:for each="{apiValues.0}" as="value" key="columnName">-->
 <!--                        <th><f:format.htmlentities>{columnName}</f:format.htmlentities></th>-->
 <!--                    </f:for>-->
 <!--                </tr>-->
 <!--                </thead>-->
 <!--                <tbody>-->
-<!--                <f:for each="{dataRows}" as="row">-->
+<!--                <f:for each="{apiValues}" as="row">-->
 <!--                    <tr>-->
 <!--                        <f:for each="{row}" as="cell">-->
 <!--                            <td><f:format.htmlentities>{cell}</f:format.htmlentities></td>-->
@@ -27,9 +25,4 @@
 <!--                </tbody>-->
 <!--            </table>-->
 <!--        </f:if>-->
-
-<!--        <f:if condition="{dataRows -> f:count()} == 0">-->
-<!--            <p>No data available.</p>-->
-<!--        </f:if>-->
-    </f:section>
 </html>

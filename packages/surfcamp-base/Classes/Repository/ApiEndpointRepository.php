@@ -39,4 +39,24 @@ class ApiEndpointRepository
             throw new NotFoundException('Endpoint not found', 1746373658);
         }
     }
+
+    public function findAllByBase(string $baseUid): array
+    {
+        $queryBuilder = clone $this->queryBuilder;
+        try {
+            return  $queryBuilder->select('*')
+                ->from('tx_surfcampbase_api_endpoint')
+                ->where(
+                    $queryBuilder->expr()->eq(
+                        'base',
+                        $queryBuilder->createNamedParameter($baseUid, ParameterType::INTEGER)
+                    ),
+                )->executeQuery()
+                ->fetchAllAssociative();
+
+        } catch (Exception $e) {
+            $this->logger->error($e->getMessage());
+            throw new NotFoundException('Endpoint not found', 1746373658);
+        }
+    }
 }

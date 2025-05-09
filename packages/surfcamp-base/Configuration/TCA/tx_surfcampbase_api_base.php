@@ -40,14 +40,6 @@ return [
                 'size' => 200,
             ],
         ],
-        'base_url' => [
-            'label' => $ll . '.base_url',
-            'config' => [
-                'type' => 'link',
-                'required' => true,
-                'allowedTypes' => ['url'],
-            ],
-        ],
         'additional_headers' => [
             'label' => $ll . '.additional_headers',
             'description' => $ll . '.additional_headers.description',

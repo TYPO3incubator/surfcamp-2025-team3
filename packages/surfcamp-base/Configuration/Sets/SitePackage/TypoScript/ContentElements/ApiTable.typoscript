@@ -1,7 +1,10 @@
 tt_content {
-    api_table =< lib.contentElement
+    api_table < lib.contentElement
     api_table {
         templateName = ApiTable
+        templateRootPaths.0 = EXT:surfcamp_base/Resources/Private/PageView/ContentElements
+        layoutRootPath.0 = 'EXT:surfcamp_base/Resources/Private/PageView/Layouts/'
+        partialRootPath.0 = 'EXT:surfcamp_base/Resources/Private/PageView/Partials/'
         dataProcessing.10 = TYPO3Incubator\SurfcampBase\DataProcessors\ApiAggregationDataProcessor
     }
 }
