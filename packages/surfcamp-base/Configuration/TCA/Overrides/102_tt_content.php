@@ -16,7 +16,8 @@ ExtensionManagementUtility::addTCAcolumns(
             ],
         ],
         'api_base' => [
-            'label' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:field.api_name',
+            'label' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:field.api_base',
+            'description' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:field.api_base.description',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
@@ -26,7 +27,8 @@ ExtensionManagementUtility::addTCAcolumns(
             'onChange' => 'reload',
         ],
         'api_endpoint' => [
-            'label' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:field.api_base',
+            'label' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:field.api_endpoint',
+            'description' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:field.api_endpoint.description',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
@@ -38,6 +40,7 @@ ExtensionManagementUtility::addTCAcolumns(
         ],
         'target_field_mapping' => [
             'label' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:field.target_field_mapping',
+            'description' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:field.target_field_mapping.description',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',

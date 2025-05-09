@@ -33,8 +33,23 @@
             <trans-unit id="field.template">
                 <source>Template</source>
             </trans-unit>
+            <trans-unit id="field.api_base">
+                <source>Api</source>
+            </trans-unit>
+            <trans-unit id="field.api_base.description">
+                <source>The Api to use</source>
+            </trans-unit>
             <trans-unit id="field.api_endpoint">
                 <source>Api Endpoint</source>
+            </trans-unit>
+            <trans-unit id="field.api_endpoint.description">
+                <source>The api endpoint that should be used.</source>
+            </trans-unit>
+            <trans-unit id="field.target_field_mapping">
+                <source>Field Mapping</source>
+            </trans-unit>
+            <trans-unit id="field.target_field_mapping.description">
+                <source>The fields to be mapped to the template.</source>
             </trans-unit>
             <trans-unit id="tx_surfcampbase_api_endpoint">
                 <source>API Endpoint</source>
