@@ -1,28 +1,179 @@
-<html>
+<html data-namespace-typo3-fluid="true">
+<style>
+    .football-ranking-container {
+        font-family: Arial, Helvetica, sans-serif;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+    }
 
-<!--    <f:asset.css identifier="api-table-css" href="EXT:surfcamp_base/Resources/Public/Css/api-table.css" />-->
+    .football-ranking-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
 
-    <h2>Data available to the content element test:</h2>
-    <f:debug>{_all}</f:debug>
+    .football-ranking-table {
+        width: 100%;
+        border-collapse: collapse;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+        overflow: hidden;
+    }
 
-<!--        <f:if condition="{apiValues}">-->
-<!--            <table class="api-table">-->
-<!--                <thead>-->
-<!--                <tr>-->
-<!--                    <f:for each="{apiValues.0}" as="value" key="columnName">-->
-<!--                        <th><f:format.htmlentities>{columnName}</f:format.htmlentities></th>-->
-<!--                    </f:for>-->
-<!--                </tr>-->
-<!--                </thead>-->
-<!--                <tbody>-->
-<!--                <f:for each="{apiValues}" as="row">-->
-<!--                    <tr>-->
-<!--                        <f:for each="{row}" as="cell">-->
-<!--                            <td><f:format.htmlentities>{cell}</f:format.htmlentities></td>-->
-<!--                        </f:for>-->
-<!--                    </tr>-->
-<!--                </f:for>-->
-<!--                </tbody>-->
-<!--            </table>-->
-<!--        </f:if>-->
+    .football-ranking-table th,
+    .football-ranking-table td {
+        padding: 12px 15px;
+        text-align: left;
+    }
+
+    .football-ranking-table thead {
+        background-color: #3f51b5;
+        color: white;
+    }
+
+    .football-ranking-table th {
+        font-weight: bold;
+    }
+
+    .football-ranking-table .odd-row {
+        background-color: #f9f9f9;
+    }
+
+    .football-ranking-table .even-row {
+        background-color: #fff;
+    }
+
+    .football-ranking-table tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .rank-column {
+        width: 60px;
+        text-align: center;
+    }
+
+    .logo-column {
+        width: 70px;
+    }
+
+    .team-column {
+        min-width: 200px;
+    }
+
+    .matches-column,
+    .goals-column {
+        width: 80px;
+        text-align: center;
+    }
+
+    .points-column {
+        width: 80px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .team-logo-container {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .team-logo {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .placeholder-logo {
+        width: 40px;
+        height: 40px;
+        background-color: #e0e0e0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: #333;
+        border-radius: 50%;
+    }
+
+    .no-data {
+        text-align: center;
+        padding: 30px;
+        color: #777;
+    }
+
+    /* Responsive Design */
+    @media screen and (max-width: 768px) {
+        .football-ranking-table {
+            font-size: 14px;
+        }
+
+        .football-ranking-table th,
+        .football-ranking-table td {
+            padding: 8px 10px;
+        }
+
+        .matches-column,
+        .goals-column {
+            width: 60px;
+        }
+    }
+
+    @media screen and (max-width: 576px) {
+        .team-column {
+            min-width: 150px;
+        }
+
+        .football-ranking-table {
+            font-size: 13px;
+        }
+    }
+</style>
+<!--<f:asset.css identifier="football-table-css" href="EXT:surfcamp_base/Resources/Public/Css/football-table.css" />-->
+<div class="football-ranking-container">
+    <h2>Premier League</h2>
+
+    <table class="football-ranking-table">
+        <thead>
+        <tr>
+            <th class="rank-column">Rank</th>
+            <th class="logo-column">Logo</th>
+            <th class="team-column">Team</th>
+            <th class="points-column">Points</th>
+        </tr>
+        </thead>
+        <tbody>
+        <f:if condition="{apiValues}">
+            <f:then>
+                <f:for each="{apiValues}" as="team" iteration="iterator">
+                    <tr class="{f:if(condition: '{iterator.cycle} % 2', then: 'even-row', else: 'odd-row')}">
+                        <td class="rank-column">{team.rank}</td>
+                        <td class="logo-column">
+                            <div class="team-logo-container">
+                                <f:if condition="{team.logo}">
+                                    <f:then>
+                                        <img src="{team.logo}" alt="{team.name} Logo" class="team-logo">
+                                    </f:then>
+                                    <f:else>
+                                        <div class="placeholder-logo">{team.name}</div>
+                                    </f:else>
+                                </f:if>
+                            </div>
+                        </td>
+                        <td class="team-column">{team.name}</td>
+                        <td class="points-column">{team.points}</td>
+                    </tr>
+                </f:for>
+            </f:then>
+            <f:else>
+                <tr>
+                    <td colspan="6" class="no-data">No data found</td>
+                </tr>
+            </f:else>
+        </f:if>
+        </tbody>
+    </table>
+</div>
 </html>

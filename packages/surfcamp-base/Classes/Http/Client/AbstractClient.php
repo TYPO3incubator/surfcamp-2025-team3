@@ -27,7 +27,12 @@ readonly abstract class AbstractClient
 
     protected function getUrl(RecordInterface $endpoint): string
     {
-        $baseUrl = $endpoint->get('base')->get('base_url')->toArray()['url'];
+        if (is_string($endpoint->get('base')->get('base_url'))) {
+            $baseUrl = $endpoint->get('base')->get('base_url');
+        } else {
+            $baseUrl = $endpoint->get('base')->get('base_url')->toArray()['url'];
+        }
+
         $path = $endpoint->get('path');
 
         if (str_starts_with($path, '/')) {
@@ -35,6 +40,5 @@ readonly abstract class AbstractClient
         }
 
         return $baseUrl . '/' . $path;
-
     }
 }
