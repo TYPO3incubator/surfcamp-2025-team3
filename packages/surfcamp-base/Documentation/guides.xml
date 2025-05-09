@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- See  https://docs.typo3.org/permalink/h2document:guides-xml for documentation on this file-->
+<guides
+    xmlns="https://www.phpdoc.org/guides"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://www.phpdoc.org/guides vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd"
+    input-format="rst"
+    >
+    <project
+        title="Clickable API"
+        copyright="The contributors"
+    />
+    <extension
+        class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension"
+        edit-on-github="TYPO3incubator/surfcamp-2025-team3"
+        edit-on-github-branch="main"
+        interlink-shortcode="typo3-incubator/surfcamp-base"
+        project-issues="https://github.com/TYPO3incubator/surfcamp-2025-team3/issues"
+        project-repository="https://github.com/TYPO3incubator/surfcamp-2025-team3"
+        typo3-core-preferred="stable"
+    />
+</guides>
