@@ -6,6 +6,7 @@ namespace TYPO3Incubator\SurfcampBase\Factory;
 
 use TYPO3\CMS\Core\Domain\RecordFactory;
 use TYPO3\CMS\Core\Domain\RecordInterface;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3Incubator\SurfcampBase\Exception\NotFoundException;
 use TYPO3Incubator\SurfcampBase\Repository\ApiEndpointRepository;
 

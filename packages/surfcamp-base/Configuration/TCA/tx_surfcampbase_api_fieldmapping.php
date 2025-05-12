@@ -55,7 +55,13 @@ return [
             'label' => $LLL . ':fieldmapping.source.title',
             'description' => $LLL . ':fieldmapping.source.description',
             'config' => [
-                'type' => 'input',
+                'type' => 'select',
+                'renderType' => 'selectMultipleSideBySide',
+                'maxitems' => 1,
+                'items' => [
+                    ['label' => 'Default value', 'value' => 'default'],
+                ],
+                'itemsProcFunc' => TYPO3Incubator\SurfcampBase\Backend\UserFunctions\SelectAPIResponseKeys::class . '->selectAPIResponseKeys',
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
