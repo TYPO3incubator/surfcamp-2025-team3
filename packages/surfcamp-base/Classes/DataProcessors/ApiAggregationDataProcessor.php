@@ -33,16 +33,16 @@ readonly class ApiAggregationDataProcessor implements DataProcessorInterface
     ): array {
         $targetVariableName = $cObj->stdWrapValue('as', $processorConfiguration, 'apiValues');
 
-        try {
+//        try {
             $endpoint = $this->endPointFactory->create($this->getEndpointUid($cObj));
 
             $cacheLifetime = $this->getCacheLifetime($endpoint, $cObj);
             $responseBody = $this->client->fetch($endpoint, $cacheLifetime);
 
             $processedData[$targetVariableName] = $this->fieldMappingService->map($responseBody, $endpoint);
-        } catch (Throwable $throwable) {
-            $this->logger->error($throwable->getMessage());
-        }
+//        } catch (Throwable $throwable) {
+//            $this->logger->error($throwable->getMessage());
+//        }
 
         return $processedData;
     }
