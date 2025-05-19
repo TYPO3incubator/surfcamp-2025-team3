@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ffcd25ce8392371b25789f790af3b99f",
+    "content-hash": "156bd0f409837f94b29cfaab77f6c329",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -5300,12 +5300,12 @@
             "time": "2025-03-03T07:12:39+00:00"
         },
         {
-            "name": "typo3-incubator/surfcamp-base",
+            "name": "typo3-incubator/plugsy",
             "version": "dev-main",
             "dist": {
                 "type": "path",
-                "url": "packages/surfcamp-base",
-                "reference": "f617e315f0a4ba3c6c018f17c433a0e64a37b02e"
+                "url": "packages/plugsy",
+                "reference": "c09465afcff299592c91896db96c7d8d70294edd"
             },
             "require": {
                 "typo3/cms-core": "^13.4",
@@ -5315,12 +5315,12 @@
             "type": "typo3-cms-extension",
             "extra": {
                 "typo3/cms": {
-                    "extension-key": "surfcamp_base"
+                    "extension-key": "plugsy"
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "TYPO3Incubator\\SurfcampBase\\": "Classes/"
+                    "TYPO3Incubator\\Plugsy\\": "Classes/"
                 }
             },
             "license": [
@@ -7391,7 +7391,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "typo3-incubator/surfcamp-base": 20
+        "typo3-incubator/plugsy": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
