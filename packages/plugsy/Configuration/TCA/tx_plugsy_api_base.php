@@ -42,6 +42,7 @@ return [
         ],
         'base_url' => [
             'label' => $ll . '.base_url',
+            'description' => $ll . '.base_url.description',
             'config' => [
                 'type' => 'link',
                 'required' => true,
@@ -57,6 +58,7 @@ return [
         ],
         'endpoints' => [
             'label' => $ll . '.endpoints',
+            'description' => $ll . '.endpoints.description',
             'config' => [
                 'type' => 'inline',
                 'foreign_table' => 'tx_plugsy_api_endpoint',
