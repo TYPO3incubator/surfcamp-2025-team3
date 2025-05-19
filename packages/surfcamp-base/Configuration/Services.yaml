@@ -40,3 +40,16 @@ services:
   TYPO3Incubator\SurfcampBase\Service\CacheService:
     arguments:
       $cache: '@cache.surfcamp_base_api_response'
+
+  querybuilder.tx_surfcampbase_api_fieldmapping:
+    class: 'TYPO3\CMS\Core\Database\Query\QueryBuilder'
+    factory:
+      - '@TYPO3\CMS\Core\Database\ConnectionPool'
+      - 'getQueryBuilderForTable'
+    arguments:
+      - 'tx_surfcampbase_api_fieldmapping'
+
+  TYPO3Incubator\SurfcampBase\Repository\ApiMappingRepository:
+    public: true
+    arguments:
+      $queryBuilder: '@querybuilder.tx_surfcampbase_api_fieldmapping'

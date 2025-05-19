@@ -4,10 +4,6 @@ declare(strict_types=1);
 
 namespace TYPO3Incubator\SurfcampBase\DataProcessors;
 
-use GuzzleHttp\Exception\GuzzleException;
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
-use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 use Throwable;
@@ -37,16 +33,16 @@ readonly class ApiAggregationDataProcessor implements DataProcessorInterface
     ): array {
         $targetVariableName = $cObj->stdWrapValue('as', $processorConfiguration, 'apiValues');
 
-        try {
+//        try {
             $endpoint = $this->endPointFactory->create($this->getEndpointUid($cObj));
 
             $cacheLifetime = $this->getCacheLifetime($endpoint, $cObj);
             $responseBody = $this->client->fetch($endpoint, $cacheLifetime);
 
             $processedData[$targetVariableName] = $this->fieldMappingService->map($responseBody, $endpoint);
-        } catch (Throwable $throwable) {
-            $this->logger->error($throwable->getMessage());
-        }
+//        } catch (Throwable $throwable) {
+//            $this->logger->error($throwable->getMessage());
+//        }
 
         return $processedData;
     }
@@ -54,16 +50,6 @@ readonly class ApiAggregationDataProcessor implements DataProcessorInterface
     protected function getEndpointUid(ContentObjectRenderer $cObj): int
     {
         return (int)($cObj->data['api_endpoint'] ?? 0);
-    }
-
-    /**
-     * @throws GuzzleException
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
-     */
-    protected function fetchApiData(RecordInterface $endpoint): ResponseInterface
-    {
-        return $this->client->fetch($endpoint);
     }
 
     protected function getSettings(ContentObjectRenderer $cObj)

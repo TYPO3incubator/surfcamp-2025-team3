@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace TYPO3Incubator\SurfcampBase\Http\ContentTypeHandlers;
 
 use Psr\Http\Message\ResponseInterface;
-use TYPO3\CMS\Core\Domain\RecordInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class XmlResponseHandler implements HandlerInterface
 {
@@ -13,11 +13,16 @@ class XmlResponseHandler implements HandlerInterface
 
     public function resolveResponseBody(ResponseInterface $response): array
     {
-        // TODO: Implement map() method.
+        return $this->parseXmlToArray($response);
+    }
+
+    private function parseXmlToArray(ResponseInterface $response): array
+    {
+        return GeneralUtility::xml2array($response->getBody()->getContents());
     }
 
     public function isResponsible(string $type): bool
     {
-        return $type === self::CONTENT_TYPE;
+        return str_contains($type, self::CONTENT_TYPE);
     }
 }

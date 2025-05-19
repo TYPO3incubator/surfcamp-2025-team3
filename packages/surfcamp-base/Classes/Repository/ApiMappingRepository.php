@@ -10,7 +10,7 @@ use Psr\Log\LoggerInterface;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3Incubator\SurfcampBase\Exception\NotFoundException;
 
-class ApiEndpointRepository
+class ApiMappingRepository
 {
     public function __construct(
         private readonly LoggerInterface $logger,
@@ -26,7 +26,7 @@ class ApiEndpointRepository
         $queryBuilder = clone $this->queryBuilder;
         try {
             return $queryBuilder->select('*')
-                ->from('tx_surfcampbase_api_endpoint')
+                ->from('tx_surfcampbase_api_fieldmapping')
                 ->where(
                     $queryBuilder->expr()->eq(
                         'uid',
@@ -38,21 +38,5 @@ class ApiEndpointRepository
             $this->logger->error($e->getMessage());
             throw new NotFoundException('Endpoint not found', 1746373658);
         }
-    }
-
-    public function updateResponse(int $uid, string $responseBody): void
-    {
-        $queryBuilder = clone $this->queryBuilder;
-        $queryBuilder->update('tx_surfcampbase_api_endpoint')
-            ->set(
-                'response',
-                $responseBody
-            )
-            ->where(
-                $queryBuilder->expr()->eq(
-                    'uid',
-                    $queryBuilder->createNamedParameter($uid, ParameterType::INTEGER)
-                )
-            )->executeStatement();
     }
 }

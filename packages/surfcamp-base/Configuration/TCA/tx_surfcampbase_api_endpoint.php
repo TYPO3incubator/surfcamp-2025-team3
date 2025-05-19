@@ -30,7 +30,7 @@ return [
                 cache_lifetime,
                 type,
                 body,
-//                response,
+                response,
                 mappings,
                 --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access,
                 --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.visibility;visibility,
@@ -117,16 +117,18 @@ return [
                 ],
             ],
         ],
-//        'response' => [
-//            'label' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:tx_surfcampbase_api_endpoint.response',
-//            'description' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:tx_surfcampbase_api_endpoint.response.description',
-//            'config' => [
-//                'type' => 'user',
-//                'renderType' => 'apiResponseField',
-//            ],
-//        ],
+        'response' => [
+            'label' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:tx_surfcampbase_api_endpoint.response',
+            'description' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:tx_surfcampbase_api_endpoint.response.description',
+            'config' => [
+                'type' => 'user',
+                'renderType' => 'apiResponseField',
+                'readOnly' => true,
+            ],
+        ],
         'mappings' => [
             'label' => 'LLL:EXT:surfcamp_base/Resources/Private/Language/locallang_be.xlf:fieldmapping.title',
+            'displayCond' => 'FIELD:response:REQ:true',
             'config' => [
                 'type' => 'inline',
                 'foreign_table' => 'tx_surfcampbase_api_fieldmapping',
