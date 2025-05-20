@@ -1,0 +1,11 @@
+categories:
+  Plugsy:
+    label: 'Plugsy'
+
+settings:
+  cache.response.lifetime:
+    label: 'Response Cache Lifetime'
+    description: 'Response Cache Lifetime'
+    category: Plugsy
+    type: int
+    default: 600

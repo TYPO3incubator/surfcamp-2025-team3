@@ -1,8 +1,0 @@
-@import './PageTsConfig/BackendLayouts/'
-@import './PageTsConfig/TCEFORM.tsconfig'
-
-RTE {
-    default {
-        preset = surfcamp_base
-    }
-}

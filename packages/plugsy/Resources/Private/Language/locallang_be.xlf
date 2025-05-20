@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2025-04-07UTC09:57:000">
+        <header />
+        <body>
+            <trans-unit id="backend_layout.default">
+                <source>Default</source>
+            </trans-unit>
+            <trans-unit id="backend_layout.column.stage">
+                <source>Stage</source>
+            </trans-unit>
+            <trans-unit id="backend_layout.column.normal">
+                <source>Normal</source>
+            </trans-unit>
+            <trans-unit id="backend_layout.column.right">
+                <source>Right</source>
+            </trans-unit>
+            <trans-unit id="content_element.api_data_link.label">
+                <source>API Data Link</source>
+            </trans-unit>
+            <trans-unit id="content_element.api_data_link.description">
+                <source>This is a content element for linking different APIs.</source>
+            </trans-unit>
+            <trans-unit id="field.template">
+                <source>Template</source>
+            </trans-unit>
+
+            <!-- api_endpoint record -->
+            <trans-unit id="field.api_endpoint">
+                <source>Api Endpoint</source>
+            </trans-unit>
+            <trans-unit id="tx_plugsy_api_endpoint">
+                <source>API Endpoint</source>
+            </trans-unit>
+            <trans-unit id="tx_plugsy_api_endpoint.base">
+                <source>Corresponding API Base</source>
+            </trans-unit>
+            <trans-unit id="tx_plugsy_api_endpoint.name">
+                <source>Name</source>
+            </trans-unit>
+            <trans-unit id="tx_plugsy_api_endpoint.body">
+                <source>Request Body</source>
+            </trans-unit>
+            <trans-unit id="tx_plugsy_api_endpoint.type">
+                <source>Type</source>
+            </trans-unit>
+            <trans-unit id="tx_plugsy_api_endpoint.type.description">
+                <source>The datatype of the API response, e.g. JSON or GraphQL</source>
+            </trans-unit>
+            <trans-unit id="tx_plugsy_api_endpoint.path">
+                <source>Path</source>
+            </trans-unit>
+            <trans-unit id="tx_plugsy_api_endpoint.path.description">
+                <source>Path to be appended to the base url, including parameters. E.g. matches?id=123</source>
+            </trans-unit>
+            <trans-unit id="tx_plugsy_api_endpoint.response">
+                <source>Response</source>
+            </trans-unit>
+            <trans-unit id="tx_plugsy_api_endpoint.response.description">
+                <source>This field shows an examples api response of the given endpoint.</source>
+            </trans-unit>
+            <trans-unit id="tx_plugsy_api_endpoint.cache_lifetime">
+                <source>Cache Lifetime</source>
+            </trans-unit>
+
+            <!-- api_base record -->
+            <trans-unit id="tx_plugsy_api_base">
+                <source>API Base configuration</source>
+            </trans-unit>
+            <trans-unit id="tx_plugsy_api_base.name">
+                <source>API Name</source>
+            </trans-unit>
+            <trans-unit id="tx_plugsy_api_base.base_url">
+                <source>API base url</source>
+            </trans-unit>
+            <trans-unit id="tx_plugsy_api_base.base_url.description">
+                <source>The base URL of the API including protocol (https://) and domain, but no subdirectories. Example: https://api.example.com. This URL serves as the foundation for all API requests and will be combined with specific endpoints.</source>
+            </trans-unit>
+            <trans-unit id="tx_plugsy_api_base.additional_headers">
+                <source>Additional headers</source>
+            </trans-unit>
+            <trans-unit id="tx_plugsy_api_base.additional_headers.description">
+                <source>Provider additional headers for the API Request, like the authorization header</source>
+            </trans-unit>
+            <trans-unit id="tx_plugsy_api_base.endpoints">
+                <source>API endpoints</source>
+            </trans-unit>
+            <trans-unit id="tx_plugsy_api_base.endpoints.description">
+                <source>For each base, several endpoints with different queries and data mappings can be defined</source>
+            </trans-unit>
+
+            <!-- api_fieldmapping -->
+            <trans-unit id="fieldmapping.title" resname="fieldmapping.title">
+                <source>API field mapping</source>
+            </trans-unit>
+            <trans-unit id="fieldmapping.source.title" resname="fieldmapping.source.title">
+                <source>Source</source>
+            </trans-unit>
+            <trans-unit id="fieldmapping.source.description" resname="fieldmapping.source.description">
+                <source>Path to the entry in the response (point-separated): data.Page.media.title.english</source>
+            </trans-unit>
+            <trans-unit id="fieldmapping.target.title" resname="fieldmapping.target.title">
+                <source>Target</source>
+            </trans-unit>
+            <trans-unit id="fieldmapping.target.description" resname="fieldmapping.target.description">
+                <source>Name of the Fluid variable</source>
+            </trans-unit>
+            <trans-unit id="fieldmapping.target_datatype.title" resname="fieldmapping.target_datatype.title">
+                <source>Target datatype</source>
+            </trans-unit>
+            <trans-unit id="fieldmapping.target_datatype.items.string" resname="fieldmapping.target_datatype.items.string">
+                <source>String</source>
+            </trans-unit>
+            <trans-unit id="fieldmapping.target_datatype.items.int" resname="fieldmapping.target_datatype.items.int">
+                <source>Integer</source>
+            </trans-unit>
+            <trans-unit id="fieldmapping.target_datatype.items.float" resname="fieldmapping.target_datatype.items.float">
+                <source>Float</source>
+            </trans-unit>
+            <trans-unit id="fieldmapping.target_datatype.items.bool" resname="fieldmapping.target_datatype.items.bool">
+                <source>Bool</source>
+            </trans-unit>
+            <trans-unit id="fieldmapping.target_datatype.items.currency" resname="fieldmapping.target_datatype.items.currency">
+                <source>Currency</source>
+            </trans-unit>
+            <trans-unit id="fieldmapping.target_datatype.items.datetime" resname="fieldmapping.target_datatype.items.datetime">
+                <source>Datetime</source>
+            </trans-unit>
+            <trans-unit id="fieldmapping.target_datatype.items.array" resname="fieldmapping.target_datatype.items.array">
+                <source>Array / Object</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
